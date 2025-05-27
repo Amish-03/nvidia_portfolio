@@ -177,6 +177,10 @@
 </p>
 <img src="images/knapsack.gif" alt="Knapsack Problem Illustration" class="w-full max-w-md mx-auto mb-6 rounded shadow-lg" />
 
+<p class="text-center text-sm text-gray-500 mb-6">
+  Source: <a href="https://commons.wikimedia.org/wiki/File:Knapsack_problem_dynamic_programming.gif" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">Wikimedia Commons</a>
+</p>
+
 <h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
 <ul class="list-disc ml-6 mb-4">
   <li><strong>Time Complexity:</strong> <code>O(nW)</code> — where <code>n</code> is the number of items and <code>W</code> is the total capacity of the knapsack.</li>
@@ -1189,15 +1193,112 @@ def pagerank(graph, damping=0.85, iterations=10):
 </div>
 
 
-  <!-- 4. Real-Time Data Processing -->
-  <div class="mb-6">
-    <h4 class="text-xl font-semibold mb-2">4. Real-Time Data Processing 🚗</h4>
-    <p class="mb-2">
-      Nvidia platforms in autonomous cars need to process camera, LiDAR, and radar feeds in milliseconds. Efficient data fusion and decision-making is life-critical.
-    </p>
-    <p><strong>Applied Algorithm:</strong> KD-Trees for nearest neighbor searches in LiDAR point clouds, combined with BFS for quick path decisions.</p>
+  <!-- 4. GPU Memory Management Optimization -->
+<div class="mb-6">
+  <h4 class="text-xl font-semibold mb-2">4. GPU Memory Management Optimization 🧠</h4>
+  <p class="mb-2">
+    Efficient and dynamic management of GPU memory is critical in maximizing the throughput of AI workloads. With multiple simultaneous tasks allocating and freeing memory blocks, fragmentation and slow allocation can degrade performance. Segment Trees enable real-time tracking and querying of memory intervals to optimize allocation and minimize fragmentation.
+  </p>
+  <p class="mb-4"><strong>Applied Algorithm:</strong> Segment Tree – a data structure optimized for interval queries and updates.</p>
+
+  <h5 class="text-lg font-semibold mb-2">What is a Segment Tree?</h5>
+  <p class="mb-4">
+    A Segment Tree is a binary tree data structure that allows efficient querying and updating over intervals or segments of an array. It supports operations like finding minimum, maximum, or sum within a range in <code>O(log n)</code> time, making it well-suited for dynamic interval management problems such as GPU memory allocation.
+  </p>
+  <img src="images/segmenttree.webp" alt="Segment Tree Illustration" class="w-full max-w-md mx-auto mb-6 rounded shadow-lg" />
+
+  <p class="text-center text-sm text-gray-500 mb-6">
+  Source: <a href="https://www.geeksforgeeks.org/segment-tree-data-structure/" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">GeeksforGeeks</a>
+</p>
+  <h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
+  <ul class="list-disc ml-6 mb-4">
+    <li><strong>Time Complexity:</strong> <code>O(log n)</code> per query or update, where <code>n</code> is the size of the memory address space.</li>
+    <li><strong>Space Complexity:</strong> <code>O(n)</code> to store the segment tree.</li>
+  </ul>
+  <p class="mb-6">
+    This efficiency allows real-time memory management in GPUs, enabling fast allocation and deallocation with minimal overhead even under heavy multitasking scenarios.
+  </p>
+
+  <div class="bg-gray-900 text-green-200 font-mono text-sm p-4 rounded-md shadow-lg overflow-x-auto mb-6">
+    <pre><code>// Simplified Segment Tree for GPU Memory Allocation in C++
+
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+class SegmentTree {
+    vector&lt;int&gt; tree;
+    int size;
+
+public:
+    SegmentTree(int n) {
+        size = n;
+        tree.assign(4 * n, 0);  // Store free/used status of segments
+    }
+
+    void update(int idx, int start, int end, int pos, int val) {
+        if (start == end) {
+            tree[idx] = val;
+            return;
+        }
+        int mid = (start + end) / 2;
+        if (pos <= mid)
+            update(2 * idx + 1, start, mid, pos, val);
+        else
+            update(2 * idx + 2, mid + 1, end, pos, val);
+
+        tree[idx] = tree[2 * idx + 1] + tree[2 * idx + 2];
+    }
+
+    int query(int idx, int start, int end, int l, int r) {
+        if (r < start || l > end)
+            return 0;
+        if (l <= start && end <= r)
+            return tree[idx];
+        int mid = (start + end) / 2;
+        return query(2 * idx + 1, start, mid, l, r) + query(2 * idx + 2, mid + 1, end, l, r);
+    }
+};
+
+int main() {
+    int memorySize = 16;  // 16 GB GPU memory blocks
+    SegmentTree segTree(memorySize);
+
+    // Allocate memory at block 3
+    segTree.update(0, 0, memorySize - 1, 3, 1);
+
+    // Query how many blocks are allocated between 0 and 7
+    cout &lt;&lt; "Allocated blocks in range [0,7]: " &lt;&lt; segTree.query(0, 0, memorySize - 1, 0, 7) &lt;&lt; endl;
+
+    return 0;
+}
+    </code></pre>
   </div>
-</section>
+
+  <h5 class="text-lg font-semibold mb-2">Applying Segment Trees to NVIDIA GPU Memory Management</h5>
+  <p class="mb-4">
+    NVIDIA GPUs run multiple AI workloads that continuously allocate and release memory. Tracking free and used memory blocks efficiently is essential to prevent fragmentation and optimize performance. Segment Trees allow the memory manager to:
+  </p>
+  <ul class="list-disc ml-6 mb-4">
+    <li>Quickly query available free memory intervals for allocation requests.</li>
+    <li>Update memory usage status dynamically as workloads start and finish.</li>
+    <li>Minimize fragmentation by merging adjacent free blocks in real-time.</li>
+    <li>Support concurrent memory management operations in parallel on CUDA cores.</li>
+  </ul>
+
+  <h5 class="text-lg font-semibold mb-2">Benefits of this approach</h5>
+  <ul class="list-disc ml-6 mb-4">
+    <li>Enables high throughput for AI training and inference by reducing memory allocation overhead.</li>
+    <li>Improves stability and reduces out-of-memory errors during dynamic workload changes.</li>
+    <li>Facilitates scalable memory management in multi-tenant GPU clusters.</li>
+    <li>Integrates seamlessly with NVIDIA’s CUDA runtime and driver-level memory allocators.</li>
+  </ul>
+
+  <p>
+    This segment tree-based memory optimization is foundational for NVIDIA’s AI platforms to maintain efficient GPU utilization and deliver consistent high performance under heavy multitasking scenarios.
+  </p>
+</div>
+
 
 
     <section id="metrics">
