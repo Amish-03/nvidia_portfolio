@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enabling Nvidia (En-vidia) - APS Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+
+  <!-- Header -->
+  <header class="bg-cyan-600 text-white px-6 py-10 flex items-center justify-between">
+  <div class="flex-1 text-center">
+    <h1 class="text-5xl font-extrabold">Enabling Nvidia (En-vidia)</h1>
+    <p class="italic text-xl mt-2">An APS point of view</p>
+  </div>
+  <div class="ml-auto">
+    <a href="https://github.com/amish-03" target="_blank" class="inline-block bg-white text-blue-600 text-lg px-5 py-3 rounded hover:bg-gray-100 font-semibold shadow-md">
+      View on GitHub
+    </a>
+  </div>
+</header>
+
+
+
+  <!-- Main Info -->
+  <section class="max-w-3xl mx-auto p-6 space-y-4">
+    
+    <dl class="space-y-3 text-lg">
+      <div>
+        <dt class="font-semibold">Course Name</dt>
+        <dd>Algorithmic Problem Solving</dd>
+      </div>
+      <div>
+        <dt class="font-semibold">Course Code</dt>
+        <dd>23ECSE309</dd>
+      </div>
+      <div>
+        <dt class="font-semibold">Name</dt>
+        <dd>Amish Bhushan Kulkarni</dd>
+      </div>
+      <dt class="font-semibold">Department</dt>
+        <dd>Electronics and Communications</dd>
+      </div>
+      <div>
+        <dt class="font-semibold">SRN</dt>
+        <dd>01FE22BEC099</dd>
+      </div>
+      <div>
+        <dt class="font-semibold">Course Instructor</dt>
+        <dd>Prakash Hegade</dd>
+      </div>
+      <div>
+        <dt class="font-semibold">University</dt>
+        <dd>KLE Technological University, Hubballi-31</dd>
+      </div>
+      <div>
+        <dt class="font-semibold">Portfolio Topic/Domain</dt>
+        <dd>Nvidia</dd>
+      </div>
+    </dl>
+
+    <p class="mt-6 text-lg italic">A deeper dive into Nvidia</p>
+  </section>
+
+  <!-- Navigation -->
+  <nav class="max-w-3xl mx-auto p-6 border-t border-b border-gray-300 text-blue-600 text-lg">
+    <h3 class="text-2xl font-bold mb-4">Contents</h3>
+  <ol class="list-decimal ml-5 space-y-2">
+    <li><a href="#introduction" class="hover:underline font-semibold">Introduction 🌱</a></li>
+    <li><a href="#objectives" class="hover:underline font-semibold">Objectives 🎯</a></li>
+    <li><a href="#business" class="hover:underline font-semibold">Business Use Cases ➡️ Algorithmic Solutions 🧩</a></li>
+    <li><a href="#metrics" class="hover:underline font-semibold">Use Case Insights and Efficiency Metrics 📊</a></li>
+    <li><a href="#learnings" class="hover:underline font-semibold">Key Learnings and Takeaways 🧠</a></li>
+  </ol>
+</nav>
+
+
+  <!-- Sections -->
+  <main class="max-w-3xl mx-auto p-6 space-y-16">
+
+   <section id="introduction">
+  <h3 class="text-2xl font-bold mb-4">Introduction</h3>
+  <img src="images/nvidia_open.webp" alt="Nvidia Introduction" class="w-full max-w-md mx-auto mb-2 rounded shadow-lg" />
+  <p class="text-sm text-gray-600 text-center mb-4">
+    Figure 1: Nvidia’s graphic processing unit (GPU) in Paris on Friday. Source: 
+    <a href="https://www.nbcnews.com/business/business-news/what-is-nvidia-what-do-they-make-ai-artificial-intelligence-rcna140171" target="_blank" class="text-blue-600 underline">NBC NEWS</a>
+  </p>
+
+  <p>
+  Nvidia, a global leader in graphics processing technology and AI computing, has seen remarkable growth, with its market value nearing $3 trillion, making it one of the largest companies in the United States. Founded in 1993, Nvidia revolutionized the tech industry with its innovative GPUs, initially leading the gaming market. Today, its technology is essential for artificial intelligence, data centers, and automotive advancements, giving it a near-monopoly status in AI hardware. This transformation underscores Nvidia's critical role in shaping the future of technology, powered by platforms like CUDA and bolstered by exponential demand growth—especially during the pandemic boom 
+  <sup>[1]</sup>
+  Understanding Nvidia’s vast ecosystem highlights how advanced hardware combined with algorithmic innovation drives performance and transforms experiences worldwide. Key areas of Nvidia's impact include:
+</p>
+
+<!-- Company Profile Section -->
+<div class="mt-4 p-4 bg-gray-100 rounded shadow">
+  <h4 class="text-xl font-semibold mb-2">Company Profile<sup>[2]</sup></h4>
+  <ul class="list-disc ml-6">
+    <li><strong>Date:</strong> 1993 – present</li>
+    <li><strong>Ticker:</strong> NVDA</li>
+    <li><strong>Share price:</strong> $131.29 (market close, May 23, 2025)</li>
+    <li><strong>Market cap:</strong> $3.20 trillion</li>
+    <li><strong>Annual revenue:</strong> $130.50 billion</li>
+    <li><strong>Earnings per share (prev. year):</strong> $2.94</li>
+    <li><strong>Sector:</strong> Information Technology</li>
+    <li><strong>Industry:</strong> Semiconductors & Semiconductor Equipment</li>
+    <li><strong>CEO:</strong> Mr. Jen-Hsun Huang</li>
+    <li><strong>Headquarters:</strong> Santa Clara</li>
+  </ul>
+</div>
+
+
+<div style="margin-top: 20px;"></div>  <!-- adds 20px space above -->
+
+<!-- Key Products -->
+
+  <h3 class="text-2xl font-semibold mb-4">Key Products and AI Applications</h3>
+  <ul class="list-disc ml-6">
+    <li><strong>GeForce GTX and RTX series:</strong> Used primarily in gaming and professional workstation applications.<sup>[2]</sup></li>
+    <li><strong>NVIDIA A and H series and DGX systems:</strong> Supports artificial intelligence (AI) and data center applications.<sup>[2]</sup></li>
+    <li><strong>NVIDIA Tegra series:</strong> Designed for small devices such as car components, smartphones, and handheld electronics.<sup>[2]</sup></li>
+    <li><strong>NVIDIA Mellanox ConnectX SmartNICs and Quantum InfiniBand:</strong> GPUs utilized in cloud applications, data storage, and machine learning.<sup>[2]</sup></li>
+    <li><strong>CUDA, AI Enterprise, and Drive:</strong> GPUs tailored for software developers (DRIVE being specifically designed for developers of self-driving car software).<sup>[2]</sup></li>
+    <li><strong>NVIDIA Broadcast:</strong> AI-powered app that transforms any room into a professional studio by enhancing audio and video quality with features like noise removal and virtual backgrounds <sup>[3]</sup>.</li>
+    <li><strong>NVIDIA Clara:</strong> AI platform accelerating healthcare breakthroughs in medical imaging, genomics, and drug discovery <sup>[4]</sup>.</li>
+    <li><strong>NVIDIA Jetson:</strong> AI edge computing platform consisting of a small form factor, high-performance build for IoT, robotics, and embedded systems, enabling real-time AI processing at the edge.<sup>[5]</sup></li>
+  </ul>
+
+
+    
+  </ul>
+</section>
+    <section class="max-w-3xl mx-auto p-6 space-y-6">
+  <h3 class="text-2xl font-bold mb-2">Enhancing Nvidia’s Capabilities with Algorithms</h3>
+  <p>
+    In today’s digital age, the efficiency and effectiveness of technology services can be significantly enhanced through the strategic application of data structures and algorithms. This portfolio project explores the core functionalities of Nvidia’s innovative platforms, applying the theoretical knowledge and practical skills acquired from the course Algorithmic Problem Solving (APS). By using advanced algorithmic techniques and innovative data structures, this project aims to propose solutions to real-world computational and AI challenges.
+  </p>
+  <p>
+    This portfolio demonstrates how algorithms can optimize Nvidia’s technologies. Each example illustrates how smart problem-solving with algorithms can enhance operational smoothness and processing power across edge computing, GPU acceleration, and AI-driven platforms. Join me in this exploration as we bridge the gap between theory and practice, highlighting the profound impact of data structures and algorithms on cutting-edge technologies. Additionally, each case includes a thorough performance analysis to evaluate effectiveness.
+  </p>
+</section>
+
+
+    <section id="objectives">
+  <h3 class="text-2xl font-bold mb-2">Objectives 🎯</h3>
+  <p>
+    This portfolio focuses on applying core Data Structures and Algorithms (DSA) principles to real-world scenarios involving Nvidia technologies. The objectives include:
+  </p>
+  <ul class="list-disc ml-6">
+    <li>Apply graph algorithms to optimize data flow and interconnectivity in GPU architectures.</li>
+    <li>Use dynamic programming and greedy strategies to enhance memory management and caching efficiency in GPU-based computations.</li>
+    <li>Leverage search and sorting algorithms for efficient AI model inference and retrieval systems.</li>
+    <li>Utilize tree and heap structures to manage GPU resource allocation and priority scheduling tasks.</li>
+    <li>Implement hashing and prefix trees (tries) for fast data indexing and lookup in edge devices like Nvidia Jetson.</li>
+  </ul>
+</section>
+
+
+    <section id="business" class="max-w-3xl mx-auto p-6">
+  <h3 class="text-2xl font-bold mb-4">📈 Business Use Cases ➡️ Algorithmic Solutions 🧩</h3>
+  <p class="mb-4">
+    Nvidia’s business problems addressed here highlight the importance of algorithmic problem-solving:
+  </p>
+
+  <!-- 1. GPU Resource Management -->
+<div class="mb-6">
+  <h4 class="text-xl font-semibold mb-2">1. GPU Resource Management 🎮</h4>
+  <p class="mb-2">
+    Efficiently assigning tasks across available GPUs in data centers is crucial for maximizing throughput while minimizing energy use and latency. This becomes especially important when multiple AI tasks with different resource requirements are queued together.
+  </p>
+  <p class="mb-4"><strong>Applied Algorithm:</strong> 0/1 Knapsack Problem – where each job is an item with weight (GPU usage) and value (priority or expected reward).</p>
+
+  <h5 class="text-lg font-semibold mb-2">What is the Knapsack Problem?</h5>
+<p class="mb-4">
+  The Knapsack Problem is a classic optimization problem. Given a set of items, each with a weight and value, the goal is to select items so that the total weight does not exceed a capacity limit while maximizing the total value. In the 0/1 Knapsack variant, items cannot be split — they are either taken or left.
+</p>
+<img src="images/knapsack.gif" alt="Knapsack Problem Illustration" class="w-full max-w-md mx-auto mb-6 rounded shadow-lg" />
+
+<h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
+<ul class="list-disc ml-6 mb-4">
+  <li><strong>Time Complexity:</strong> <code>O(nW)</code> — where <code>n</code> is the number of items and <code>W</code> is the total capacity of the knapsack.</li>
+  <li><strong>Space Complexity:</strong> <code>O(nW)</code> using a 2D DP array, or <code>O(W)</code> using a space-optimized 1D array.</li>
+</ul>
+<p class="mb-6">
+  While the knapsack problem is NP-complete, dynamic programming offers a pseudo-polynomial time solution that is efficient for moderate-sized inputs. Space optimization further enables real-time applications in resource-constrained environments like embedded GPU systems.
+</p>
+<div class="bg-gray-900 text-green-200 font-mono text-sm p-4 rounded-md shadow-lg overflow-x-auto mb-6">
+  <pre><code>// 0/1 Knapsack Problem in C++ (Dynamic Programming)
+
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int knapsack(const vector&lt;int&gt;& weights, const vector&lt;int&gt;& values, int capacity) {
+    int n = weights.size();
+    vector&lt;vector&lt;int&gt;&gt; dp(n + 1, vector&lt;int&gt;(capacity + 1, 0));
+
+    for (int i = 1; i &lt;= n; ++i) {
+        for (int w = 0; w &lt;= capacity; ++w) {
+            if (weights[i - 1] &lt;= w) {
+                dp[i][w] = max(values[i - 1] + dp[i - 1][w - weights[i - 1]], dp[i - 1][w]);
+            } else {
+                dp[i][w] = dp[i - 1][w];
+            }
+        }
+    }
+
+    return dp[n][capacity];
+}
+
+int main() {
+    vector&lt;int&gt; weights = {2, 1, 3, 2};
+    vector&lt;int&gt; values = {12, 10, 20, 15};
+    int capacity = 5;
+
+    cout &lt;&lt; "Maximum value: " &lt;&lt; knapsack(weights, values, capacity) &lt;&lt; endl; // Output: 37
+    return 0;
+}
+  </code></pre>
+</div>
+
+
+
+  <h5 class="text-lg font-semibold mb-2">GPU Resource Management as a Knapsack Problem</h5>
+  <p class="mb-4">
+    Nvidia GPUs in data centers must run multiple AI workloads simultaneously. Each task requires some GPU memory and compute, and has a priority or value. Since GPU resources are limited, scheduling becomes a problem of selecting tasks that maximize total priority without exceeding resource limits — exactly like a 0/1 Knapsack Problem.
+  </p>
+
+  <table class="table-auto border-collapse border border-gray-300 mb-4 mx-auto max-w-lg w-full text-left">
+    <thead>
+      <tr>
+        <th class="border border-gray-300 px-4 py-2 bg-gray-100">Task</th>
+        <th class="border border-gray-300 px-4 py-2 bg-gray-100">Memory Needed (GB)</th>
+        <th class="border border-gray-300 px-4 py-2 bg-gray-100">Priority (Value)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">A</td>
+        <td class="border border-gray-300 px-4 py-2">5</td>
+        <td class="border border-gray-300 px-4 py-2">10</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">B</td>
+        <td class="border border-gray-300 px-4 py-2">3</td>
+        <td class="border border-gray-300 px-4 py-2">7</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">C</td>
+        <td class="border border-gray-300 px-4 py-2">8</td>
+        <td class="border border-gray-300 px-4 py-2">12</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">D</td>
+        <td class="border border-gray-300 px-4 py-2">4</td>
+        <td class="border border-gray-300 px-4 py-2">8</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">E</td>
+        <td class="border border-gray-300 px-4 py-2">6</td>
+        <td class="border border-gray-300 px-4 py-2">11</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="mb-4">
+    The goal is to select tasks fitting within a 16 GB GPU memory limit to maximize total priority, ensuring efficient GPU utilization and balanced workload scheduling.
+  </p>
+
+  <h5 class="text-lg font-semibold mb-2">Benefits of this approach</h5>
+  <ul class="list-disc ml-6 mb-4">
+    <li>Maximizes GPU resource utilization without overcommitment.</li>
+    <li>Enables automated scheduling of high-priority AI workloads.</li>
+    <li>Balances throughput and performance priorities dynamically.</li>
+    <li>Supports real-time scheduling as workloads change.</li>
+  </ul>
+
+  
+
+  <p>
+    This knapsack-based scheduling logic underpins Nvidia’s CUDA Multi-Process Service (MPS) and cloud GPU schedulers to optimize resource allocation dynamically across many clients and workloads.
+  </p>
+</div>
+
+
+  <!-- 2. GPU Allocation via A* Search & Stable Marriage -->
+<div class="mb-6">
+  <h4 class="text-xl font-semibold mb-2">2. Smart GPU Allocation using A* Search & Stable Marriage 💡</h4>
+  <p class="mb-4">
+    Allocating the right task to the right GPU at the right time isn't just about maximizing value — it's also about matching compatibility and predicting the best long-term scheduling decisions. To tackle this, we combine two elegant algorithms: <strong>A* Search</strong> (for optimal pathfinding) and the <strong>Stable Marriage Problem</strong> (for stable, preference-based matching).
+  </p>
+
+  <!-- A* Search -->
+  <h5 class="text-lg font-semibold mb-2">What is A* Search?</h5>
+  <p class="mb-4">
+    A* (A-star) is a graph traversal algorithm that finds the shortest path between two nodes using both actual cost (g) and heuristic estimate (h), making it both optimal and complete. In our context, it's used to find the nearest or most optimal GPU given a task’s constraints (like current load, data location, energy cost, etc).
+  </p>
+  <img src="images/astar.gif" alt="A* Search Illustration" class="w-full max-w-md mx-auto mb-2 rounded shadow-lg" />
+
+<p class="text-center text-sm text-gray-500 mb-6">
+  Source: <a href="https://en.wikipedia.org/wiki/A*_search_algorithm" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">Wikipedia - A* Search Algorithm</a>
+</p>
+
+
+  <h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
+  <ul class="list-disc ml-6 mb-4">
+    <li><strong>Time Complexity:</strong> <code>O(E)</code> where <code>E</code> is the number of edges (can be exponential with bad heuristics)</li>
+    <li><strong>Space Complexity:</strong> <code>O(V)</code> where <code>V</code> is the number of vertices</li>
+  </ul>
+
+  <div class="bg-gray-900 text-green-200 font-mono text-sm p-4 rounded-md shadow-lg overflow-x-auto mb-6">
+    <pre><code>// A* Search Algorithm in C++
+// A C++ Program to implement A* Search Algorithm
+#include <bits/stdc++.h>
+using namespace std;
+
+#define ROW 9
+#define COL 10
+
+// Creating a shortcut for int, int pair type
+typedef pair<int, int> Pair;
+
+// Creating a shortcut for pair<int, pair<int, int>> type
+typedef pair<double, pair<int, int> > pPair;
+
+// A structure to hold the necessary parameters
+struct cell {
+    // Row and Column index of its parent
+    // Note that 0 <= i <= ROW-1 & 0 <= j <= COL-1
+    int parent_i, parent_j;
+    // f = g + h
+    double f, g, h;
+};
+
+<span id="dots">...</span><span id="more" style="display:none;">
+
+// A Utility Function to check whether given cell (row, col)
+// is a valid cell or not.
+bool isValid(int row, int col)
+{
+    // Returns true if row number and column number
+    // is in range
+    return (row >= 0) && (row < ROW) && (col >= 0)
+           && (col < COL);
+}
+
+// A Utility Function to check whether the given cell is
+// blocked or not
+bool isUnBlocked(int grid[][COL], int row, int col)
+{
+    // Returns true if the cell is not blocked else false
+    if (grid[row][col] == 1)
+        return (true);
+    else
+        return (false);
+}
+
+// A Utility Function to check whether destination cell has
+// been reached or not
+bool isDestination(int row, int col, Pair dest)
+{
+    if (row == dest.first && col == dest.second)
+        return (true);
+    else
+        return (false);
+}
+
+// A Utility Function to calculate the 'h' heuristics.
+double calculateHValue(int row, int col, Pair dest)
+{
+    // Return using the distance formula
+    return ((double)sqrt(
+        (row - dest.first) * (row - dest.first)
+        + (col - dest.second) * (col - dest.second)));
+}
+
+// A Utility Function to trace the path from the source
+// to destination
+void tracePath(cell cellDetails[][COL], Pair dest)
+{
+    printf("\nThe Path is ");
+    int row = dest.first;
+    int col = dest.second;
+
+    stack<Pair> Path;
+
+    while (!(cellDetails[row][col].parent_i == row
+             && cellDetails[row][col].parent_j == col)) {
+        Path.push(make_pair(row, col));
+        int temp_row = cellDetails[row][col].parent_i;
+        int temp_col = cellDetails[row][col].parent_j;
+        row = temp_row;
+        col = temp_col;
+    }
+
+    Path.push(make_pair(row, col));
+    while (!Path.empty()) {
+        pair<int, int> p = Path.top();
+        Path.pop();
+        printf("-> (%d,%d) ", p.first, p.second);
+    }
+
+    return;
+}
+
+// A Function to find the shortest path between
+// a given source cell to a destination cell according
+// to A* Search Algorithm
+void aStarSearch(int grid[][COL], Pair src, Pair dest)
+{
+    // If the source is out of range
+    if (isValid(src.first, src.second) == false) {
+        printf("Source is invalid\n");
+        return;
+    }
+
+    // If the destination is out of range
+    if (isValid(dest.first, dest.second) == false) {
+        printf("Destination is invalid\n");
+        return;
+    }
+
+    // Either the source or the destination is blocked
+    if (isUnBlocked(grid, src.first, src.second) == false
+        || isUnBlocked(grid, dest.first, dest.second)
+               == false) {
+        printf("Source or the destination is blocked\n");
+        return;
+    }
+
+    // If the destination cell is the same as source cell
+    if (isDestination(src.first, src.second, dest)
+        == true) {
+        printf("We are already at the destination\n");
+        return;
+    }
+
+    // Create a closed list and initialise it to false which
+    // means that no cell has been included yet This closed
+    // list is implemented as a boolean 2D array
+    bool closedList[ROW][COL];
+    memset(closedList, false, sizeof(closedList));
+
+    // Declare a 2D array of structure to hold the details
+    // of that cell
+    cell cellDetails[ROW][COL];
+
+    int i, j;
+
+    for (i = 0; i < ROW; i++) {
+        for (j = 0; j < COL; j++) {
+            cellDetails[i][j].f = FLT_MAX;
+            cellDetails[i][j].g = FLT_MAX;
+            cellDetails[i][j].h = FLT_MAX;
+            cellDetails[i][j].parent_i = -1;
+            cellDetails[i][j].parent_j = -1;
+        }
+    }
+
+    // Initialising the parameters of the starting node
+    i = src.first, j = src.second;
+    cellDetails[i][j].f = 0.0;
+    cellDetails[i][j].g = 0.0;
+    cellDetails[i][j].h = 0.0;
+    cellDetails[i][j].parent_i = i;
+    cellDetails[i][j].parent_j = j;
+
+    /*
+     Create an open list having information as-
+     <f, <i, j>>
+     where f = g + h,
+     and i, j are the row and column index of that cell
+     Note that 0 <= i <= ROW-1 & 0 <= j <= COL-1
+     This open list is implemented as a set of pair of
+     pair.*/
+    set<pPair> openList;
+
+    // Put the starting cell on the open list and set its
+    // 'f' as 0
+    openList.insert(make_pair(0.0, make_pair(i, j)));
+
+    // We set this boolean value as false as initially
+    // the destination is not reached.
+    bool foundDest = false;
+
+    while (!openList.empty()) {
+        pPair p = *openList.begin();
+
+        // Remove this vertex from the open list
+        openList.erase(openList.begin());
+
+        // Add this vertex to the closed list
+        i = p.second.first;
+        j = p.second.second;
+        closedList[i][j] = true;
+
+        /*
+         Generating all the 8 successor of this cell
+
+             N.W   N   N.E
+               \   |   /
+                \  |  /
+             W----Cell----E
+                  / | \
+                /   |  \
+             S.W    S   S.E
+
+         Cell-->Popped Cell (i, j)
+         N -->  North       (i-1, j)
+         S -->  South       (i+1, j)
+         E -->  East        (i, j+1)
+         W -->  West           (i, j-1)
+         N.E--> North-East  (i-1, j+1)
+         N.W--> North-West  (i-1, j-1)
+         S.E--> South-East  (i+1, j+1)
+         S.W--> South-West  (i+1, j-1)*/
+
+        // To store the 'g', 'h' and 'f' of the 8 successors
+        double gNew, hNew, fNew;
+
+        //----------- 1st Successor (North) ------------
+
+        // Only process this cell if this is a valid one
+        if (isValid(i - 1, j) == true) {
+            // If the destination cell is the same as the
+            // current successor
+            if (isDestination(i - 1, j, dest) == true) {
+                // Set the Parent of the destination cell
+                cellDetails[i - 1][j].parent_i = i;
+                cellDetails[i - 1][j].parent_j = j;
+                printf("The destination cell is found\n");
+                tracePath(cellDetails, dest);
+                foundDest = true;
+                return;
+            }
+            // If the successor is already on the closed
+            // list or if it is blocked, then ignore it.
+            // Else do the following
+            else if (closedList[i - 1][j] == false
+                     && isUnBlocked(grid, i - 1, j)
+                            == true) {
+                gNew = cellDetails[i][j].g + 1.0;
+                hNew = calculateHValue(i - 1, j, dest);
+                fNew = gNew + hNew;
+
+                // If it isn’t on the open list, add it to
+                // the open list. Make the current square
+                // the parent of this square. Record the
+                // f, g, and h costs of the square cell
+                //                OR
+                // If it is on the open list already, check
+                // to see if this path to that square is
+                // better, using 'f' cost as the measure.
+                if (cellDetails[i - 1][j].f == FLT_MAX
+                    || cellDetails[i - 1][j].f > fNew) {
+                    openList.insert(make_pair(
+                        fNew, make_pair(i - 1, j)));
+
+                    // Update the details of this cell
+                    cellDetails[i - 1][j].f = fNew;
+                    cellDetails[i - 1][j].g = gNew;
+                    cellDetails[i - 1][j].h = hNew;
+                    cellDetails[i - 1][j].parent_i = i;
+                    cellDetails[i - 1][j].parent_j = j;
+                }
+            }
+        }
+
+        //----------- 2nd Successor (South) ------------
+
+        // Only process this cell if this is a valid one
+        if (isValid(i + 1, j) == true) {
+            // If the destination cell is the same as the
+            // current successor
+            if (isDestination(i + 1, j, dest) == true) {
+                // Set the Parent of the destination cell
+                cellDetails[i + 1][j].parent_i = i;
+                cellDetails[i + 1][j].parent_j = j;
+                printf("The destination cell is found\n");
+                tracePath(cellDetails, dest);
+                foundDest = true;
+                return;
+            }
+            // If the successor is already on the closed
+            // list or if it is blocked, then ignore it.
+            // Else do the following
+            else if (closedList[i + 1][j] == false
+                     && isUnBlocked(grid, i + 1, j)
+                            == true) {
+                gNew = cellDetails[i][j].g + 1.0;
+                hNew = calculateHValue(i + 1, j, dest);
+                fNew = gNew + hNew;
+
+                // If it isn’t on the open list, add it to
+                // the open list. Make the current square
+                // the parent of this square. Record the
+                // f, g, and h costs of the square cell
+                //                OR
+                // If it is on the open list already, check
+                // to see if this path to that square is
+                // better, using 'f' cost as the measure.
+                if (cellDetails[i + 1][j].f == FLT_MAX
+                    || cellDetails[i + 1][j].f > fNew) {
+                    openList.insert(make_pair(
+                        fNew, make_pair(i + 1, j)));
+                    // Update the details of this cell
+                    cellDetails[i + 1][j].f = fNew;
+                    cellDetails[i + 1][j].g = gNew;
+                    cellDetails[i + 1][j].h = hNew;
+                    cellDetails[i + 1][j].parent_i = i;
+                    cellDetails[i + 1][j].parent_j = j;
+                }
+            }
+        }
+
+        //----------- 3rd Successor (East) ------------
+
+        // Only process this cell if this is a valid one
+        if (isValid(i, j + 1) == true) {
+            // If the destination cell is the same as the
+            // current successor
+            if (isDestination(i, j + 1, dest) == true) {
+                // Set the Parent of the destination cell
+                cellDetails[i][j + 1].parent_i = i;
+                cellDetails[i][j + 1].parent_j = j;
+                printf("The destination cell is found\n");
+                tracePath(cellDetails, dest);
+                foundDest = true;
+                return;
+            }
+
+            // If the successor is already on the closed
+            // list or if it is blocked, then ignore it.
+            // Else do the following
+            else if (closedList[i][j + 1] == false
+                     && isUnBlocked(grid, i, j + 1)
+                            == true) {
+                gNew = cellDetails[i][j].g + 1.0;
+                hNew = calculateHValue(i, j + 1, dest);
+                fNew = gNew + hNew;
+
+                // If it isn’t on the open list, add it to
+                // the open list. Make the current square
+                // the parent of this square. Record the
+                // f, g, and h costs of the square cell
+                //                OR
+                // If it is on the open list already, check
+                // to see if this path to that square is
+                // better, using 'f' cost as the measure.
+                if (cellDetails[i][j + 1].f == FLT_MAX
+                    || cellDetails[i][j + 1].f > fNew) {
+                    openList.insert(make_pair(
+                        fNew, make_pair(i, j + 1)));
+
+                    // Update the details of this cell
+                    cellDetails[i][j + 1].f = fNew;
+                    cellDetails[i][j + 1].g = gNew;
+                    cellDetails[i][j + 1].h = hNew;
+                    cellDetails[i][j + 1].parent_i = i;
+                    cellDetails[i][j + 1].parent_j = j;
+                }
+            }
+        }
+
+        //----------- 4th Successor (West) ------------
+
+        // Only process this cell if this is a valid one
+        if (isValid(i, j - 1) == true) {
+            // If the destination cell is the same as the
+            // current successor
+            if (isDestination(i, j - 1, dest) == true) {
+                // Set the Parent of the destination cell
+                cellDetails[i][j - 1].parent_i = i;
+                cellDetails[i][j - 1].parent_j = j;
+                printf("The destination cell is found\n");
+                tracePath(cellDetails, dest);
+                foundDest = true;
+                return;
+            }
+
+            // If the successor is already on the closed
+            // list or if it is blocked, then ignore it.
+            // Else do the following
+            else if (closedList[i][j - 1] == false
+                     && isUnBlocked(grid, i, j - 1)
+                            == true) {
+                gNew = cellDetails[i][j].g + 1.0;
+                hNew = calculateHValue(i, j - 1, dest);
+                fNew = gNew + hNew;
+
+                // If it isn’t on the open list, add it to
+                // the open list. Make the current square
+                // the parent of this square. Record the
+                // f, g, and h costs of the square cell
+                //                OR
+                // If it is on the open list already, check
+                // to see if this path to that square is
+                // better, using 'f' cost as the measure.
+                if (cellDetails[i][j - 1].f == FLT_MAX
+                    || cellDetails[i][j - 1].f > fNew) {
+                    openList.insert(make_pair(
+                        fNew, make_pair(i, j - 1)));
+
+                    // Update the details of this cell
+                    cellDetails[i][j - 1].f = fNew;
+                    cellDetails[i][j - 1].g = gNew;
+                    cellDetails[i][j - 1].h = hNew;
+                    cellDetails[i][j - 1].parent_i = i;
+                    cellDetails[i][j - 1].parent_j = j;
+                }
+            }
+        }
+
+        //----------- 5th Successor (North-East)
+        //------------
+
+        // Only process this cell if this is a valid one
+        if (isValid(i - 1, j + 1) == true) {
+            // If the destination cell is the same as the
+            // current successor
+            if (isDestination(i - 1, j + 1, dest) == true) {
+                // Set the Parent of the destination cell
+                cellDetails[i - 1][j + 1].parent_i = i;
+                cellDetails[i - 1][j + 1].parent_j = j;
+                printf("The destination cell is found\n");
+                tracePath(cellDetails, dest);
+                foundDest = true;
+                return;
+            }
+
+            // If the successor is already on the closed
+            // list or if it is blocked, then ignore it.
+            // Else do the following
+            else if (closedList[i - 1][j + 1] == false
+                     && isUnBlocked(grid, i - 1, j + 1)
+                            == true) {
+                gNew = cellDetails[i][j].g + 1.414;
+                hNew = calculateHValue(i - 1, j + 1, dest);
+                fNew = gNew + hNew;
+
+                // If it isn’t on the open list, add it to
+                // the open list. Make the current square
+                // the parent of this square. Record the
+                // f, g, and h costs of the square cell
+                //                OR
+                // If it is on the open list already, check
+                // to see if this path to that square is
+                // better, using 'f' cost as the measure.
+                if (cellDetails[i - 1][j + 1].f == FLT_MAX
+                    || cellDetails[i - 1][j + 1].f > fNew) {
+                    openList.insert(make_pair(
+                        fNew, make_pair(i - 1, j + 1)));
+
+                    // Update the details of this cell
+                    cellDetails[i - 1][j + 1].f = fNew;
+                    cellDetails[i - 1][j + 1].g = gNew;
+                    cellDetails[i - 1][j + 1].h = hNew;
+                    cellDetails[i - 1][j + 1].parent_i = i;
+                    cellDetails[i - 1][j + 1].parent_j = j;
+                }
+            }
+        }
+
+        //----------- 6th Successor (North-West)
+        //------------
+
+        // Only process this cell if this is a valid one
+        if (isValid(i - 1, j - 1) == true) {
+            // If the destination cell is the same as the
+            // current successor
+            if (isDestination(i - 1, j - 1, dest) == true) {
+                // Set the Parent of the destination cell
+                cellDetails[i - 1][j - 1].parent_i = i;
+                cellDetails[i - 1][j - 1].parent_j = j;
+                printf("The destination cell is found\n");
+                tracePath(cellDetails, dest);
+                foundDest = true;
+                return;
+            }
+
+            // If the successor is already on the closed
+            // list or if it is blocked, then ignore it.
+            // Else do the following
+            else if (closedList[i - 1][j - 1] == false
+                     && isUnBlocked(grid, i - 1, j - 1)
+                            == true) {
+                gNew = cellDetails[i][j].g + 1.414;
+                hNew = calculateHValue(i - 1, j - 1, dest);
+                fNew = gNew + hNew;
+
+                // If it isn’t on the open list, add it to
+                // the open list. Make the current square
+                // the parent of this square. Record the
+                // f, g, and h costs of the square cell
+                //                OR
+                // If it is on the open list already, check
+                // to see if this path to that square is
+                // better, using 'f' cost as the measure.
+                if (cellDetails[i - 1][j - 1].f == FLT_MAX
+                    || cellDetails[i - 1][j - 1].f > fNew) {
+                    openList.insert(make_pair(
+                        fNew, make_pair(i - 1, j - 1)));
+                    // Update the details of this cell
+                    cellDetails[i - 1][j - 1].f = fNew;
+                    cellDetails[i - 1][j - 1].g = gNew;
+                    cellDetails[i - 1][j - 1].h = hNew;
+                    cellDetails[i - 1][j - 1].parent_i = i;
+                    cellDetails[i - 1][j - 1].parent_j = j;
+                }
+            }
+        }
+
+        //----------- 7th Successor (South-East)
+        //------------
+
+        // Only process this cell if this is a valid one
+        if (isValid(i + 1, j + 1) == true) {
+            // If the destination cell is the same as the
+            // current successor
+            if (isDestination(i + 1, j + 1, dest) == true) {
+                // Set the Parent of the destination cell
+                cellDetails[i + 1][j + 1].parent_i = i;
+                cellDetails[i + 1][j + 1].parent_j = j;
+                printf("The destination cell is found\n");
+                tracePath(cellDetails, dest);
+                foundDest = true;
+                return;
+            }
+
+            // If the successor is already on the closed
+            // list or if it is blocked, then ignore it.
+            // Else do the following
+            else if (closedList[i + 1][j + 1] == false
+                     && isUnBlocked(grid, i + 1, j + 1)
+                            == true) {
+                gNew = cellDetails[i][j].g + 1.414;
+                hNew = calculateHValue(i + 1, j + 1, dest);
+                fNew = gNew + hNew;
+
+                // If it isn’t on the open list, add it to
+                // the open list. Make the current square
+                // the parent of this square. Record the
+                // f, g, and h costs of the square cell
+                //                OR
+                // If it is on the open list already, check
+                // to see if this path to that square is
+                // better, using 'f' cost as the measure.
+                if (cellDetails[i + 1][j + 1].f == FLT_MAX
+                    || cellDetails[i + 1][j + 1].f > fNew) {
+                    openList.insert(make_pair(
+                        fNew, make_pair(i + 1, j + 1)));
+
+                    // Update the details of this cell
+                    cellDetails[i + 1][j + 1].f = fNew;
+                    cellDetails[i + 1][j + 1].g = gNew;
+                    cellDetails[i + 1][j + 1].h = hNew;
+                    cellDetails[i + 1][j + 1].parent_i = i;
+                    cellDetails[i + 1][j + 1].parent_j = j;
+                }
+            }
+        }
+
+        //----------- 8th Successor (South-West)
+        //------------
+
+        // Only process this cell if this is a valid one
+        if (isValid(i + 1, j - 1) == true) {
+            // If the destination cell is the same as the
+            // current successor
+            if (isDestination(i + 1, j - 1, dest) == true) {
+                // Set the Parent of the destination cell
+                cellDetails[i + 1][j - 1].parent_i = i;
+                cellDetails[i + 1][j - 1].parent_j = j;
+                printf("The destination cell is found\n");
+                tracePath(cellDetails, dest);
+                foundDest = true;
+                return;
+            }
+
+            // If the successor is already on the closed
+            // list or if it is blocked, then ignore it.
+            // Else do the following
+            else if (closedList[i + 1][j - 1] == false
+                     && isUnBlocked(grid, i + 1, j - 1)
+                            == true) {
+                gNew = cellDetails[i][j].g + 1.414;
+                hNew = calculateHValue(i + 1, j - 1, dest);
+                fNew = gNew + hNew;
+
+                // If it isn’t on the open list, add it to
+                // the open list. Make the current square
+                // the parent of this square. Record the
+                // f, g, and h costs of the square cell
+                //                OR
+                // If it is on the open list already, check
+                // to see if this path to that square is
+                // better, using 'f' cost as the measure.
+                if (cellDetails[i + 1][j - 1].f == FLT_MAX
+                    || cellDetails[i + 1][j - 1].f > fNew) {
+                    openList.insert(make_pair(
+                        fNew, make_pair(i + 1, j - 1)));
+
+                    // Update the details of this cell
+                    cellDetails[i + 1][j - 1].f = fNew;
+                    cellDetails[i + 1][j - 1].g = gNew;
+                    cellDetails[i + 1][j - 1].h = hNew;
+                    cellDetails[i + 1][j - 1].parent_i = i;
+                    cellDetails[i + 1][j - 1].parent_j = j;
+                }
+            }
+        }
+    }
+
+    // When the destination cell is not found and the open
+    // list is empty, then we conclude that we failed to
+    // reach the destination cell. This may happen when the
+    // there is no way to destination cell (due to
+    // blockages)
+    if (foundDest == false)
+        printf("Failed to find the Destination Cell\n");
+
+    return;
+}
+
+// Driver program to test above function
+int main()
+{
+    /* Description of the Grid-
+     1--> The cell is not blocked
+     0--> The cell is blocked    */
+    int grid[ROW][COL]
+        = { { 1, 0, 1, 1, 1, 1, 0, 1, 1, 1 },
+            { 1, 1, 1, 0, 1, 1, 1, 0, 1, 1 },
+            { 1, 1, 1, 0, 1, 1, 0, 1, 0, 1 },
+            { 0, 0, 1, 0, 1, 0, 0, 0, 0, 1 },
+            { 1, 1, 1, 0, 1, 1, 1, 0, 1, 0 },
+            { 1, 0, 1, 1, 1, 1, 0, 1, 0, 0 },
+            { 1, 0, 0, 0, 0, 1, 0, 0, 0, 1 },
+            { 1, 0, 1, 1, 1, 1, 0, 1, 1, 1 },
+            { 1, 1, 1, 0, 0, 0, 1, 0, 0, 1 } };
+
+    // Source is the left-most bottom-most corner
+    Pair src = make_pair(8, 0);
+
+    // Destination is the left-most top-most corner
+    Pair dest = make_pair(0, 0);
+
+    aStarSearch(grid, src, dest);
+
+    return (0);
+}
+
+</span></code></pre>
+
+<button onclick="toggleMore()">Show More</button>
+
+<script>
+function toggleMore() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = event.target;
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Show More";
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Show Less";
+    moreText.style.display = "inline";
+  }
+}
+</script>
+  </div>
+<p><strong>Source:</strong> <a href="https://www.geeksforgeeks.org/a-search-algorithm/" target="_blank" rel="noopener noreferrer">GeeksforGeeks - A* Search Algorithm <sup>[6]</sup></a></p>
+  <!-- Stable Marriage -->
+  <h5 class="text-lg font-semibold mb-2">What is the Stable Marriage Problem?</h5>
+  <p class="mb-4">
+    The Stable Marriage Problem finds a stable matching between two equally sized sets of elements given ranked preferences. In GPU scheduling, tasks and GPUs each have preferences (based on priority, load, or locality). The goal is to match them so that no task-GPU pair would rather be with each other over their current assignments.
+  </p>
+  <img src="images/stablemarriage.gif" alt="Stable Marriage Problem Illustration" class="w-full max-w-md mx-auto mb-2 rounded shadow-lg" />
+
+<p class="text-center text-sm text-gray-500 mb-6">
+  Source: <a href="https://en.wikipedia.org/wiki/Stable_matching_problem" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">Wikipedia - Stable Matching Problem</a>
+</p>
+
+
+  <h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
+  <ul class="list-disc ml-6 mb-4">
+    <li><strong>Time Complexity:</strong> <code>O(n<sup>2</sup>)</code></li>
+    <li><strong>Space Complexity:</strong> <code>O(n<sup>2</sup>)</code></li>
+  </ul>
+
+  <div class="bg-gray-900 text-green-200 font-mono text-sm p-4 rounded-md shadow-lg overflow-x-auto mb-6">
+    <pre><code>// Gale-Shapley Algorithm (Stable Marriage) in C++
+#include <bits/stdc++.h>
+using namespace std;
+
+// Checks if woman 'w' prefers 'm1' over 'm'
+bool wPrefersM1OverM(vector<vector<int>> &prefer, int w, int m, int m1)
+{
+    int N = prefer[0].size();
+    for (int i = 0; i < N; i++)
+    {
+        // If m1 comes before m, w prefers
+        // her current engagement
+        if (prefer[w][i] == m1)
+            return true;
+
+        // If m comes before m1, w prefers m
+        if (prefer[w][i] == m)
+            return false;
+    }
+}
+
+// Implements the stable marriage algorithm
+vector<int> stableMarriage(vector<vector<int>> &prefer)
+{
+    int N = prefer[0].size();
+
+    // Stores women's partners
+    vector<int> wPartner(N, -1);
+
+    // Tracks free men
+    vector<bool> mFree(N, false);
+    int freeCount = N;
+
+    while (freeCount > 0)
+    {
+        int m;
+        for (m = 0; m < N; m++)
+            if (!mFree[m])
+                break;
+
+        // Process each woman in m's preference list
+        for (int i = 0; i < N && !mFree[m]; i++)
+        {
+            int w = prefer[m][i];
+            if (wPartner[w - N] == -1)
+            {
+                // Engage m and w if w is free
+                wPartner[w - N] = m;
+                mFree[m] = true;
+                freeCount--;
+            }
+            else
+            {
+                int m1 = wPartner[w - N];
+                // If w prefers m over her current partner, reassign
+                if (!wPrefersM1OverM(prefer, w, m, m1))
+                {
+                    wPartner[w - N] = m;
+                    mFree[m] = true;
+                    mFree[m1] = false;
+                }
+            }
+        }
+    }
+    return wPartner;
+}
+
+int main()
+{
+    vector<vector<int>> prefer = {
+        {7, 5, 6, 4}, {5, 4, 6, 7}, {4, 5, 6, 7}, {4, 5, 6, 7},
+        {0, 1, 2, 3}, {0, 1, 2, 3}, {0, 1, 2, 3}, {0, 1, 2, 3},
+    };
+
+    vector<int> wPartner = stableMarriage(prefer);
+    cout << "Woman   Man" << endl;
+    int N = prefer[0].size();
+    for (int i = 0; i < N; i++)
+        cout << " " << i + N << "\t\t" << wPartner[i] << endl;
+    return 0;
+}
+</code></pre>
+  </div>
+
+  <!-- GPU Allocation Context -->
+  <h5 class="text-lg font-semibold mb-2">GPU Task Scheduling using A* + Stable Matching</h5>
+  <p class="mb-4">
+    Combining A* with Stable Marriage offers a dual-layer strategy: A* is used to find the nearest or most optimal GPU candidates, and Stable Marriage then ensures fair and stable matching among those candidates and tasks based on mutual preferences. This hybrid strategy reduces bottlenecks and increases GPU utilization fairness in a dynamic environment.
+  </p>
+
+  <h5 class="text-lg font-semibold mb-2">Benefits of this approach</h5>
+  <ul class="list-disc ml-6 mb-4">
+    <li>Provides stable long-term GPU-task assignments without ping-ponging.</li>
+    <li>Reduces search space by pruning suboptimal GPUs via A* heuristic.</li>
+    <li>Ideal for clustered or distributed GPU farms with latency or bandwidth constraints.</li>
+    <li>Balances local GPU availability and global task priority intelligently.</li>
+  </ul>
+
+  <p>
+    This approach is particularly useful in edge AI deployment, multi-GPU servers, and AI training farms where fair, efficient, and low-latency scheduling is crucial. Nvidia’s advanced datacenter schedulers often employ similar hybrid models under the hood for performance-aware matching.
+  </p>
+</div>
+
+  <!-- 3. Real-Time Recommendation Rankings -->
+<div class="mb-6">
+  <h4 class="text-xl font-semibold mb-2">3. Real-Time Recommendation Rankings 🎯</h4>
+  <p class="mb-2">
+    Delivering personalized, real-time recommendations is vital for engagement across platforms like streaming, retail, and gaming. NVIDIA Merlin leverages massive GPU power to process billions of interactions per second — but ranking those results meaningfully is the real challenge.
+  </p>
+  <p class="mb-4"><strong>Applied Algorithm:</strong> PageRank – leveraging graph-based influence propagation for ranking user-item interaction networks.</p>
+
+  <h5 class="text-lg font-semibold mb-2">What is the PageRank Algorithm?</h5>
+  <p class="mb-4">
+    PageRank is a graph-based algorithm that assigns importance to nodes based on their connectivity. Originally designed for ranking web pages, it models a "random surfer" who follows links. A node’s rank is determined by how many important nodes link to it, recursively. This makes it ideal for influence-based ranking in recommendation systems.
+  </p>
+  <img src="images/pagerank.png" alt="PageRank Illustration" class="w-full max-w-md mx-auto mb-6 rounded shadow-lg" />
+
+  <p class="text-center text-sm text-gray-500 mb-6">
+  Source: <a href="https://en.wikipedia.org/wiki/PageRank" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">Wikipedia - Page Rank</a>
+</p>
+  <h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
+  <ul class="list-disc ml-6 mb-4">
+    <li><strong>Time Complexity:</strong> <code>O(KN)</code> — where <code>K</code> is the number of iterations and <code>N</code> is the number of edges in the graph.</li>
+    <li><strong>Space Complexity:</strong> <code>O(V)</code> — where <code>V</code> is the number of nodes (users + items).</li>
+  </ul>
+  <p class="mb-6">
+    Thanks to its iterative nature, PageRank maps perfectly to CUDA for parallel GPU execution — enabling fast updates in dynamic graphs as user interactions stream in.
+  </p>
+
+  <div class="bg-gray-900 text-green-200 font-mono text-sm p-4 rounded-md shadow-lg overflow-x-auto mb-6">
+    <pre><code>// Simplified PageRank implementation (Python-like pseudocode)
+
+def pagerank(graph, damping=0.85, iterations=10):
+    N = len(graph)
+    ranks = {node: 1/N for node in graph}
+
+    for _ in range(iterations):
+        new_ranks = {}
+        for node in graph:
+            total = sum(ranks[neigh] / len(graph[neigh]) for neigh in graph if node in graph[neigh])
+            new_ranks[node] = (1 - damping) / N + damping * total
+        ranks = new_ranks
+
+    return ranks</code></pre>
+  </div>
+
+  <h5 class="text-lg font-semibold mb-2">Why PageRank for NVIDIA Merlin?</h5>
+  <p class="mb-4">
+    In real-time recommendation engines, users and items form a bipartite graph where interaction strength matters. PageRank naturally identifies influential items through indirect relationships — e.g., "users like me also viewed this" — providing context-aware ranking.
+  </p>
+
+  <table class="table-auto border-collapse border border-gray-300 mb-4 mx-auto max-w-lg w-full text-left">
+    <thead>
+      <tr>
+        <th class="border border-gray-300 px-4 py-2 bg-gray-100">User</th>
+        <th class="border border-gray-300 px-4 py-2 bg-gray-100">Item Clicked</th>
+        <th class="border border-gray-300 px-4 py-2 bg-gray-100">Interaction Strength</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">U1</td>
+        <td class="border border-gray-300 px-4 py-2">Item A</td>
+        <td class="border border-gray-300 px-4 py-2">1.0</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">U2</td>
+        <td class="border border-gray-300 px-4 py-2">Item B</td>
+        <td class="border border-gray-300 px-4 py-2">0.8</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">U3</td>
+        <td class="border border-gray-300 px-4 py-2">Item A</td>
+        <td class="border border-gray-300 px-4 py-2">0.9</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="mb-4">
+    These weighted edges form a graph input to PageRank, producing global rankings that reflect not just direct popularity, but contextual influence from similar users and indirect interaction paths.
+  </p>
+
+  <h5 class="text-lg font-semibold mb-2">Benefits of this approach</h5>
+  <ul class="list-disc ml-6 mb-4">
+    <li>Improves ranking relevance via indirect interaction paths.</li>
+    <li>Enables real-time updates using CUDA-based parallelism.</li>
+    <li>Resilient to spam or click-fraud (due to dampening factor).</li>
+    <li>Supports graph embeddings and hybrid models in NVIDIA Merlin.</li>
+  </ul>
+
+  <p>
+    PageRank-based ranking enhances NVIDIA Merlin’s RecSys stack by providing stable, explainable recommendations that scale with GPU performance — optimizing both accuracy and latency in production environments.
+  </p>
+</div>
+
+
+  <!-- 4. Real-Time Data Processing -->
+  <div class="mb-6">
+    <h4 class="text-xl font-semibold mb-2">4. Real-Time Data Processing 🚗</h4>
+    <p class="mb-2">
+      Nvidia platforms in autonomous cars need to process camera, LiDAR, and radar feeds in milliseconds. Efficient data fusion and decision-making is life-critical.
+    </p>
+    <p><strong>Applied Algorithm:</strong> KD-Trees for nearest neighbor searches in LiDAR point clouds, combined with BFS for quick path decisions.</p>
+  </div>
+</section>
+
+
+    <section id="metrics">
+      <h3 class="text-2xl font-bold mb-2">Use Case Insights and Efficiency Metrics - Efficiency metrics 📊</h3>
+      <p>
+        The portfolio evaluates efficiency metrics such as:
+      </p>
+      <ul class="list-disc ml-6">
+        <li>GPU utilization rates before and after applying scheduling algorithms.</li>
+        <li>Latency reduction in AI inference workflows (measured in milliseconds).</li>
+        <li>Power consumption savings achieved through DVFS algorithms (in watts).</li>
+        <li>Throughput improvement in real-time processing tasks (frames per second or data packets per second).</li>
+      </ul>
+    </section>
+
+    <section id="learnings">
+  <h3 class="text-2xl font-bold mb-2">Key Learnings and Insights - Key takeaways 🧠</h3>
+  <p>
+    This portfolio illustrates how well-designed data structures and algorithms (DSA) can address complex challenges within NVIDIA's advanced hardware and AI-driven services. Each section applies and recommends specific DSA techniques to optimize areas such as GPU task scheduling, model deployment, and real-time data processing. By drawing from the concepts learned in DSA and Algorithmic Problem Solving (APS) courses, it showcases how academic knowledge can be applied to real-world scenarios.
+  </p>
+  <p>
+    Through this portfolio, I learned:
+  </p>
+  <ul class="list-disc ml-6">
+    <li>The importance of algorithmic efficiency in hardware resource management.</li>
+    <li>How data-driven optimizations can significantly impact AI model deployment performance.</li>
+    <li>The value of balancing computational power and energy consumption for sustainable computing.</li>
+    <li>Insights into Nvidia’s ecosystem and how algorithmic problem solving drives innovation in GPU computing.</li>
+  </ul>
+</section>
+
+
+    <section id="references" class="max-w-3xl mx-auto p-6 space-y-4">
+  <h3 class="text-2xl font-bold mb-2">References 📚</h3>
+  <ul class="list-none ml-6 space-y-2">
+    <li>
+      [1] Why everyone is suddenly talking about Nvidia, the nearly $3 trillion-dollar company fueling the AI revolution by NBC NEWS 
+      <a href="https://www.nbcnews.com/business/business-news/what-is-nvidia-what-do-they-make-ai-artificial-intelligence-rcna140171" 
+         class="text-blue-700 underline" target="_blank">[Link]</a>
+    </li>
+    <li>
+      [2] NVIDIA Corporation by Britannica
+      <a href="https://www.britannica.com/money/NVIDIA-Corporation" 
+         class="text-blue-700 underline" target="_blank">[Link]</a>
+    </li>
+    <li>
+      [3] Nvidia's Broadcast AI app turns any room into a studio by Creative Bloq
+      <a href="https://www.creativebloq.com/3d/video-game-design/content-creators-are-using-ai-powered-features-for-a-studio-quality-setup" 
+         class="text-blue-700 underline" target="_blank">[Link]</a>
+    </li>
+    <li>
+      [4] NVIDIA Clara Accelerates Breakthrough Drug Discovery with AI Solutions by Quantum Zeitgeist
+      <a href="https://quantumzeitgeist.com/nvidia-clara-accelerates-breakthrough-drug-discovery-with-ai-solutions/" 
+         class="text-blue-700 underline" target="_blank">[Link]</a>
+    </li>
+    <li>
+      [5] Everything You Need to Know About NVIDIA Jetson by Viso
+      <a href="https://viso.ai/edge-ai/nvidia-jetson/ 
+         class="text-blue-700 underline" target="_blank">[Link]</a>
+    </li>
+    <li>
+      [6] A* Search Algorithm
+      <a href="https://www.geeksforgeeks.org/a-search-algorithm/" 
+         class="text-blue-700 underline" target="_blank">[Link]</a>
+    </li>
+    <li>
+      [7] NVIDIA - Wikipedia 
+      <a href="https://en.wikipedia.org/wiki/Nvidia" 
+         class="text-blue-700 underline" target="_blank">[Link]</a>
+    </li>
+    <li>
+      [8] Towards Data Science – Data Structures and Algorithms Insights 
+      <a href="https://towardsdatascience.com" 
+         class="text-blue-700 underline" target="_blank">[Link]</a>
+    </li>
+  </ul>
+</section>
+
+
+
+  </main>
+
+  <footer class="max-w-3xl mx-auto p-6 text-center text-gray-500 text-sm">
+    © 2025 Amish Bhushan Kulkarni - KLE Technological University
+  </footer>
+
+</body>
+</html>
