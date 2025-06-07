@@ -1208,7 +1208,7 @@ def pagerank(graph, damping=0.85, iterations=10):
   <img src="images/segmenttree.webp" alt="Segment Tree Illustration" class="w-full max-w-md mx-auto mb-6 rounded shadow-lg" />
 
   <p class="text-center text-sm text-gray-500 mb-6">
-  Source: <a href="https://www.geeksforgeeks.org/segment-tree-data-structure/" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">GeeksforGeeks</a>
+  Source: <a href="https://www.geeksforgeeks.org/segment-tree-data-structure/" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">GeeksforGeeks<sup>[7]</sup></a>
 </p>
   <h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
   <ul class="list-disc ml-6 mb-4">
@@ -1300,6 +1300,564 @@ int main() {
 </div>
 
 
+<!-- 5. Real-Time Data Processing -->
+<div class="mb-6">
+  <h4 class="text-xl font-semibold mb-2">5. Real-Time Data Processing 🚗</h4>
+  <p class="mb-2">
+    NVIDIA’s platforms for autonomous vehicles (NVIDIA Drive <sup>[9]</sup>) must process massive real-time sensor data from cameras, LiDAR, and radar within milliseconds. This data fusion is critical for safe navigation, obstacle detection, and split-second decision-making.
+  </p>
+  <p class="mb-4"><strong>Applied Algorithm:</strong> KD-Trees for nearest neighbor searches in LiDAR point clouds, combined with Uniform Cost Search (UCS) for optimal path planning and obstacle avoidance.</p>
+
+  <h5 class="text-lg font-semibold mb-2">What is Uniform Cost Search (UCS)?</h5>
+  <p class="mb-4">
+    Uniform Cost Search (UCS), a variant of Dijkstra’s algorithm, finds the lowest-cost path in a graph with weighted edges. Unlike BFS, which assumes equal costs, UCS expands nodes based on the cumulative path cost, making it ideal for real-world navigation where roads, turns, and obstacles have varying traversal costs.
+  </p>
+  <img src="images/ucs.png" alt="Uniform Cost Search Illustration" class="w-full max-w-md mx-auto mb-6 rounded shadow-lg" />
+  <p class="text-center text-sm text-gray-500 mb-6">
+  Source: <a href="https://www.geeksforgeeks.org/uniform-cost-search-ucs-in-ai/" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">GeeksforGeeks<sup>[8]</sup></a>
+</p>
+  <h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
+  <ul class="list-disc ml-6 mb-4">
+    <li><strong>Time Complexity:</strong> <code>O((V + E) log V)</code> — using a priority queue.</li>
+    <li><strong>Space Complexity:</strong> <code>O(V)</code> — storing the cost and visited status of each node.</li>
+  </ul>
+  <p class="mb-6">
+    UCS guarantees finding the optimal (lowest-cost) path, which is essential in safety-critical autonomous driving applications where shortest distance is not always the best — cost may reflect time, risk, or energy consumption.
+  </p>
+
+  <div class="bg-gray-900 text-green-200 font-mono text-sm p-4 rounded-md shadow-lg overflow-x-auto mb-6">
+    <pre><code>// Uniform Cost Search Example in C++
+
+#include &lt;iostream&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+#include &lt;tuple&gt;
+#include &lt;climits&gt;
+using namespace std;
+
+struct Node {
+    int x, y, cost;
+    bool operator&gt;(const Node&amp; other) const {
+        return cost &gt; other.cost;
+    }
+};
+
+const int dx[4] = {0, 1, 0, -1};
+const int dy[4] = {1, 0, -1, 0};
+
+vector&lt;vector&lt;int&gt;&gt; grid = {
+    {1, 2, 1, 3},
+    {1, 0, 2, 1},
+    {4, 3, 1, 1},
+    {0, 1, 2, 1}
+};
+
+void uniformCostSearch(int sx, int sy, int tx, int ty) {
+    int rows = grid.size(), cols = grid[0].size();
+    vector&lt;vector&lt;int&gt;&gt; cost(rows, vector&lt;int&gt;(cols, INT_MAX));
+    cost[sx][sy] = 0;
+
+    priority_queue&lt;Node, vector&lt;Node&gt;, greater&lt;Node&gt;&gt; pq;
+    pq.push({sx, sy, 0});
+
+    while (!pq.empty()) {
+        Node current = pq.top(); pq.pop();
+        int x = current.x, y = current.y, c = current.cost;
+
+        if (x == tx &amp;&amp; y == ty) {
+            cout &lt;&lt; "Reached target! Total cost: " &lt;&lt; c &lt;&lt; endl;
+            return;
+        }
+
+        for (int dir = 0; dir &lt; 4; ++dir) {
+            int nx = x + dx[dir], ny = y + dy[dir];
+            if (nx &gt;= 0 &amp;&amp; ny &gt;= 0 &amp;&amp; nx &lt; rows &amp;&amp; ny &lt; cols &amp;&amp; grid[nx][ny] != 0) {
+                int newCost = c + grid[nx][ny];
+                if (newCost &lt; cost[nx][ny]) {
+                    cost[nx][ny] = newCost;
+                    pq.push({nx, ny, newCost});
+                }
+            }
+        }
+    }
+    cout &lt;&lt; "Target not reachable." &lt;&lt; endl;
+}
+
+int main() {
+    uniformCostSearch(0, 0, 2, 3);
+    return 0;
+}
+    </code></pre>
+  </div>
+
+  <h5 class="text-lg font-semibold mb-2">What is KD Tree?</h5>
+<p class="mb-4">
+  A KD-Tree (short for k-dimensional tree) is a space-partitioning data structure used to organize points in a k-dimensional space. It is particularly useful for efficient range searches and nearest neighbor searches. In the context of autonomous driving, KD-Trees enable fast querying of nearby obstacles, vehicles, or features from massive LiDAR point cloud data — a critical task for real-time perception.
+</p>
+<img src="images/kdtree.png" alt="KD-Tree Illustration" class="w-full max-w-md mx-auto mb-6 rounded shadow-lg" />
+<p class="text-center text-sm text-gray-500 mb-6">
+  Source: <a href="https://www.geeksforgeeks.org/kd-trees-in-cpp/" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">GeeksForGeeks<sup>[10]</sup></a>
+</p>
+
+<img src="images/kdplot.png" alt="KD-Tree Plotted" class="w-full max-w-md mx-auto mb-6 rounded shadow-lg" />
+<p class="text-center text-sm text-gray-500 mb-6">
+  Source: <a href="https://www.geeksforgeeks.org/kd-trees-in-cpp/" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">GeeksForGeeks<sup>[10]</sup></a>
+</p>
+
+<h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
+<ul class="list-disc ml-6 mb-4">
+  <li><strong>Construction Time Complexity:</strong> <code>O(n log n)</code> — building the KD-Tree.</li>
+  <li><strong>Nearest Neighbor Search:</strong> <code>O(log n)</code> on average, <code>O(n)</code> in the worst case.</li>
+  <li><strong>Space Complexity:</strong> <code>O(n)</code> — storing all points in the tree.</li>
+</ul>
+<p class="mb-6">
+  KD-Trees are highly efficient for spatial queries such as finding all obstacles within a certain radius or determining the closest object to the vehicle. This enables fast perception updates and safe navigation at high speeds.
+</p>
+
+<div class="bg-gray-900 text-green-200 font-mono text-sm p-4 rounded-md shadow-lg overflow-x-auto mb-6">
+  <pre><code>// C++ Program to Implement KD Tree
+#include <iostream>
+#include <array>
+#include <cmath>
+using namespace std;
+
+// Template class for KDTree with K dimensions
+template <size_t K>
+class KDTree {
+private:
+    // Node structure representing each point in the KDTree
+    struct Node {
+        // Point in K dimensions
+        array<double, K> point; 
+        // Pointer to left child
+        Node* left;          
+        // Pointer to right child
+        Node* right;            
+
+        // Constructor to initialize a Node
+        Node(const array<double, K>& pt) : point(pt), left(nullptr), right(nullptr) {}
+    };
+
+    Node* root; // Root of the KDTree
+
+    // Recursive function to insert a point into the KDTree
+    Node* insertRecursive(Node* node, const array<double, K>& point, int depth) {
+        // Base case: If node is null, create a new node
+        if (node == nullptr) return new Node(point);
+
+        // Calculate current dimension (cd)
+        int cd = depth % K;
+
+        // Compare point with current node and decide to go left or right
+        if (point[cd] < node->point[cd])
+            node->left = insertRecursive(node->left, point, depth + 1);
+        else
+            node->right = insertRecursive(node->right, point, depth + 1);
+
+        return node;
+    }
+
+    // Recursive function to search for a point in the KDTree
+    bool searchRecursive(Node* node, const array<double, K>& point, int depth) const {
+        // Base case: If node is null, the point is not found
+        if (node == nullptr) return false;
+
+        // If the current node matches the point, return true
+        if (node->point == point) return true;
+
+        // Calculate current dimension (cd)
+        int cd = depth % K;
+
+        // Compare point with current node and decide to go left or right
+        if (point[cd] < node->point[cd])
+            return searchRecursive(node->left, point, depth + 1);
+        else
+            return searchRecursive(node->right, point, depth + 1);
+    }
+
+    // Recursive function to print the KDTree
+    void printRecursive(Node* node, int depth) const {
+        // Base case: If node is null, return
+        if (node == nullptr) return;
+
+        // Print current node with indentation based on depth
+        for (int i = 0; i < depth; i++) cout << "  ";
+        cout << "(";
+        for (size_t i = 0; i < K; i++) {
+            cout << node->point[i];
+            if (i < K - 1) cout << ", ";
+        }
+        cout << ")" << endl;
+
+        // Recursively print left and right children
+        printRecursive(node->left, depth + 1);
+        printRecursive(node->right, depth + 1);
+    }
+
+public:
+    // Constructor to initialize the KDTree with a null root
+    KDTree() : root(nullptr) {}
+
+    // Public function to insert a point into the KDTree
+    void insert(const array<double, K>& point) {
+        root = insertRecursive(root, point, 0);
+    }
+
+    // Public function to search for a point in the KDTree
+    bool search(const array<double, K>& point) const {
+        return searchRecursive(root, point, 0);
+    }
+
+    // Public function to print the KDTree
+    void print() const {
+        printRecursive(root, 0);
+    }
+};
+
+int main() {
+    // Create a KDTree with 2 dimensions
+    KDTree<2> tree;
+
+    // Insert points into the KDTree
+    tree.insert({3, 6});
+    tree.insert({2, 2});
+    tree.insert({4, 7});
+    tree.insert({1, 3});
+    tree.insert({2, 4});
+    tree.insert({5, 4});
+    tree.insert({7, 2});
+
+    // Print the KDTree structure
+    cout << "KD Tree structure:" << endl;
+    tree.print();
+
+    // Search for specific points in the KDTree
+    array<double, 2> searchPoint = {2, 4};
+    cout << "\nSearching for point (2, 4): " 
+         << (tree.search(searchPoint) ? "Found" : "Not found") << endl;
+
+    searchPoint = {6, 3};
+    cout << "Searching for point (6, 3): " 
+         << (tree.search(searchPoint) ? "Found" : "Not found") << endl;
+
+    return 0;
+}
+// In production, NVIDIA libraries like cuSpatial or RAPIDS accelerate such queries on GPUs.
+  </code></pre>
+</div>
+
+<p><strong>Source:</strong> <a href="https://www.geeksforgeeks.org/a-search-algorithm/" target="_blank" rel="noopener noreferrer">GeeksforGeeks - KD Tree in C++ <sup>[10]</sup> </a></p>
+  <h5 class="text-lg font-semibold mb-2">Real-Time Data Processing with KD-Trees + UCS</h5>
+  <p class="mb-4">
+    In NVIDIA DRIVE platforms <sup>[9]</sup>, KD-Trees rapidly process LiDAR point clouds to identify nearest obstacles, while Uniform Cost Search computes the optimal driving path through a dynamically changing road graph. This ensures that autonomous vehicles make safe, efficient navigation decisions even under complex traffic and environmental conditions.
+  </p>
+
+  <h5 class="text-lg font-semibold mb-2">Benefits of this approach</h5>
+  <ul class="list-disc ml-6 mb-4">
+    <li>Enables real-time path planning in dynamic environments.</li>
+    <li>Accounts for varying road, turn, and traffic costs — not just distance.</li>
+    <li>Robust to changing obstacle layouts thanks to KD-Tree efficiency.</li>
+    <li>Optimizes both safety and performance of NVIDIA autonomous driving systems.</li>
+  </ul>
+
+  <p>
+    Combining KD-Trees with Uniform Cost Search delivers a powerful data fusion and planning pipeline on NVIDIA’s AI compute stack, enabling fast and intelligent navigation decisions in real-world autonomous vehicle deployments.
+  </p>
+</div>
+
+<!-- 6. Eye Gaze Correction with Adaptive Smoothing 👁️ -->
+<div class="mb-6">
+  <h4 class="text-xl font-semibold mb-2">6. Eye Gaze Correction with Adaptive Smoothing 👁️</h4>
+  <p class="mb-2">
+    NVIDIA Broadcast leverages advanced deep learning models optimized for real-time inference on NVIDIA GPUs, enabling seamless audio-video enhancements like noise suppression and eye gaze correction with minimal latency. The new Eye Contact effect moves the eyes of the speaker to simulate eye contact with the camera — achieved by estimating and aligning gaze. The eyes retain their natural color and blinks, and there’s even a disconnect feature in case you look too far away, to transition smoothly between simulated and real eyes.<sup>[11]</sup>
+  </p>
+  <p class="mb-2">
+    <p class="mb-2">
+    Even after numerous optimizations, there are jitters in eye gaze tracking due to noise and rapid movements. Combining Dynamic Programming with standard deviation analysis helps smoothen these fluctuations efficiently, enhancing stability and accuracy for a better user experience.
+  </p>
+  </p>
+  <p class="mb-4"><strong>Applied Algorithm:</strong> Dynamic Programming with Adaptive Smoothing weighted by Standard Deviation of recent gaze predictions.</p>
+
+  <h5 class="text-lg font-semibold mb-2">What is Dynamic Programming in Eye Gaze Correction?</h5>
+  <p class="mb-4">
+    Dynamic Programming (DP) is used to find a sequence of corrected gaze angles that balances two objectives: staying close to the raw noisy model predictions and maintaining smooth transitions between frames to avoid jitter. DP optimizes this trade-off over a sliding window of frames to produce stable and natural gaze.
+  </p>
+
+  <h5 class="text-lg font-semibold mb-2">Role of Standard Deviation in Adaptive Smoothing</h5>
+  <p class="mb-4">
+    Standard deviation measures the variability (noise) in recent gaze angle predictions. By computing the standard deviation over a sliding window of recent frames, the smoothing strength can be adapted dynamically:
+  </p>
+  <ul class="list-disc ml-6 mb-4">
+    <li><strong>Low standard deviation:</strong> Gaze predictions are stable; less smoothing is applied, allowing natural eye movements.</li>
+    <li><strong>High standard deviation:</strong> Predictions are noisy; stronger smoothing is applied to reduce flicker and jitter.</li>
+  </ul>
+  <p class="mb-6">
+    This adaptive approach enables NVIDIA Broadcast to correct gaze with high responsiveness and naturalness even in challenging conditions.
+  </p>
+
+  <h6 class="text-md font-semibold mb-2">Mathematical Formulation</h6>
+  <p class="mb-4">
+    The cost function optimized by DP for frame <code>i</code> is:
+  </p>
+  <pre class="bg-gray-800 text-green-200 font-mono p-4 rounded mb-6">
+Cost(i) = α*(curr_angle-raw_angle)<sup>2</sup> + β*std_recent*(curr_angle-prev_angle)<sup>2</sup>
+  </pre>
+  <p>
+    Here,
+    <ul class="list-disc ml-6 mb-4">
+      <li><code>α</code> controls how close corrected angles remain to raw predictions.</li>
+      <li><code>β</code> controls smoothing strength.</li>
+      <li><code>std_recent</code> is the standard deviation of raw gaze angles in recent frames, scaling smoothing adaptively.</li>
+    </ul>
+  </p>
+
+  <h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
+  <ul class="list-disc ml-6 mb-4">
+    <li><strong>Time Complexity:</strong> <code>O(n * m^2)</code> where <code>n</code> is total frames and <code>m</code> is the quantization level of angle candidates per frame.</li>
+    <li><strong>Space Complexity:</strong> <code>O(n * m)</code> to store DP cost and backtrack paths.</li>
+  </ul>
+
+  <div class="bg-gray-900 text-green-200 font-mono text-sm p-4 rounded-md shadow-lg overflow-x-auto mb-6">
+    <pre><code>// Eye Gaze Correction with Adaptive Smoothing in C++
+
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;cmath&gt;
+#include &lt;algorithm&gt;
+#include &lt;numeric&gt;
+
+using namespace std;
+
+// Compute standard deviation of last k raw angles ending at index i
+double computeStdDev(const vector&lt;double&gt;& raw, int i, int k) {
+    int start = max(0, i - k + 1);
+    vector&lt;double&gt; window(raw.begin() + start, raw.begin() + i + 1);
+    double mean = accumulate(window.begin(), window.end(), 0.0) / window.size();
+    double sq_sum = 0.0;
+    for (double val : window) {
+        sq_sum += (val - mean) * (val - mean);
+    }
+    return sqrt(sq_sum / window.size());
+}
+
+int main() {
+    int n = 10; // Number of frames
+    int m = 100; // Quantization levels of angle candidates
+    double alpha = 1.0;
+    double beta = 5.0;
+    int std_window = 5; // Window size for std deviation
+
+    // Simulated raw gaze angles for n frames (radians)
+    vector&lt;double&gt; raw_angles = {0.1, 0.12, 0.15, 0.13, 0.20, 0.5, 0.45, 0.43, 0.4, 0.38};
+
+    // Generate candidate angles per frame (e.g. uniform grid)
+    vector&lt;vector&lt;double&gt;&gt; candidates(n, vector&lt;double&gt;(m));
+    for (int i = 0; i &lt; n; ++i) {
+        for (int j = 0; j &lt; m; ++j) {
+            candidates[i][j] = -0.5 + j * (1.0 / (m - 1)); // Range [-0.5, 0.5]
+        }
+    }
+
+    // DP cost and backtracking arrays
+    vector&lt;vector&lt;double&gt;&gt; dp(n, vector&lt;double&gt;(m, 1e9));
+    vector&lt;vector&lt;int&gt;&gt; parent(n, vector&lt;int&gt;(m, -1));
+
+    // Initialization for first frame
+    for (int j = 0; j &lt; m; ++j) {
+        dp[0][j] = alpha * pow(candidates[0][j] - raw_angles[0], 2);
+    }
+
+    // DP iterations
+    for (int i = 1; i &lt; n; ++i) {
+        double std_dev = computeStdDev(raw_angles, i, std_window);
+        for (int j = 0; j &lt; m; ++j) {
+            double cost_raw = alpha * pow(candidates[i][j] - raw_angles[i], 2);
+            for (int k = 0; k &lt; m; ++k) {
+                double smooth_cost = beta * std_dev * pow(candidates[i][j] - candidates[i-1][k], 2);
+                double total_cost = dp[i-1][k] + cost_raw + smooth_cost;
+                if (total_cost &lt; dp[i][j]) {
+                    dp[i][j] = total_cost;
+                    parent[i][j] = k;
+                }
+            }
+        }
+    }
+
+    // Backtracking to find optimal corrected gaze sequence
+    double min_cost = 1e9;
+    int best_idx = -1;
+    for (int j = 0; j &lt; m; ++j) {
+        if (dp[n-1][j] &lt; min_cost) {
+            min_cost = dp[n-1][j];
+            best_idx = j;
+        }
+    }
+    vector&lt;double&gt; corrected_gaze(n);
+    int cur = best_idx;
+    for (int i = n - 1; i &gt;= 0; --i) {
+        corrected_gaze[i] = candidates[i][cur];
+        cur = parent[i][cur];
+    }
+
+    // Output corrected gaze angles
+    cout &lt;&lt; "Corrected gaze angles (radians):" &lt;&lt; endl;
+    for (double angle : corrected_gaze) {
+        cout &lt;&lt; angle &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+
+    return 0;
+}
+    </code></pre>
+  </div>
+
+  <h5 class="text-lg font-semibold mb-2">Benefits of Adaptive Smoothing with Standard Deviation</h5>
+  <ul class="list-disc ml-6 mb-4">
+    <li>Automatically adapts smoothing strength based on noise level, improving naturalness.</li>
+    <li>Reduces jitter during noisy conditions while preserving fast, intentional eye movements.</li>
+    <li>Enables real-time, stable gaze correction suitable for NVIDIA Broadcast's low-latency requirements.</li>
+    <li>Leverages a simple statistical measure (standard deviation) to enhance dynamic programming effectiveness.</li>
+  </ul>
+
+  <p>
+    This approach makes NVIDIA Broadcast’s eye gaze correction feel more human, smooth, and reliable across varied environments.
+  </p>
+</div>
+
+<!-- 7. Burst Noise Detection in Real-Time Audio Processing 🎙️ -->
+<div class="mb-6">
+  <h4 class="text-xl font-semibold mb-2">7. Burst Noise Detection in Real-Time Audio Processing 🎙️</h4>
+  <p class="mb-2">
+    Even after numerous optimizations, there are jitters and residual noise bursts that slip through AI-based noise suppression models in real-time audio streams.
+    Efficient detection of these bursts allows NVIDIA Broadcast to dynamically adapt suppression levels, improving clarity without degrading speech.
+  </p>
+  <p class="mb-4">
+    <strong>Applied Algorithm:</strong> Kadane's Algorithm — used to find contiguous audio frame segments with the highest cumulative noise energy.
+  </p>
+
+  <h5 class="text-lg font-semibold mb-2">What is Kadane's Algorithm?</h5>
+  <p class="mb-4">
+    Kadane’s algorithm is a dynamic programming technique used to find the contiguous subarray within a one-dimensional array of numbers that has the largest sum.
+    In the context of audio processing, this enables Broadcast to quickly identify time segments with the strongest noise bursts or speech energy.
+  </p>
+  <img src="images/kadane.avif" alt="Kadane's Algorithm Illustration" class="w-full max-w-md mx-auto mb-6 rounded shadow-lg" />
+  <p class="text-center text-sm text-gray-500 mb-6">
+    Source: <a href="https://neetcode.io/courses/advanced-algorithms/0" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">Neetcode<sup>[13]</sup></a>
+  </p>
+
+  <h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
+  <ul class="list-disc ml-6 mb-4">
+    <li><strong>Time Complexity:</strong> <code>O(n)</code> — linear time, very suitable for real-time streaming.</li>
+    <li><strong>Space Complexity:</strong> <code>O(1)</code> — constant space.</li>
+  </ul>
+  <p class="mb-6">
+    This allows Kadane’s algorithm to run continuously in parallel with the audio processing pipeline, without adding latency.
+  </p>
+
+  <div class="bg-gray-900 text-green-200 font-mono text-sm p-4 rounded-md shadow-lg overflow-x-auto mb-6">
+    <pre><code>// C++ Program to find the maximum subarray sum using nested loops 
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to find the sum of subarray with maximum sum
+int maxSubarraySum(vector<int> &arr) {
+    int res = arr[0];
+  
+    // Outer loop for starting point of subarray
+  	for(int i = 0; i < arr.size(); i++) {
+    	int currSum = 0;
+      
+        // Inner loop for ending point of subarray
+        for(int j = i; j < arr.size(); j++) {
+        	currSum = currSum + arr[j];
+          
+            // Update res if currSum is greater than res
+            res = max(res, currSum);
+        }
+    }
+    return res;
+}
+
+int main() {
+    vector<int> arr = {2, 3, -8, 7, -1, 2, 3};
+    cout << maxSubarraySum(arr);
+    return 0;
+}
+    </code></pre>
+  </div>
+<p><strong>Source:</strong> <a href="https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/" target="_blank" rel="noopener noreferrer">GeeksforGeeks - Maximum Subarray Sum - Kadane's Algorithm <sup>[12]</sup> </a></p>
+
+  <h5 class="text-lg font-semibold mb-2">Real-Time Noise Burst Detection in NVIDIA Broadcast</h5>
+  <p class="mb-4">
+    NVIDIA Broadcast processes continuous audio streams divided into short frames. After initial noise suppression, some bursts of noise can remain.
+    By applying Kadane’s algorithm on the noise energy scores of each frame, Broadcast can:
+
+    <ul class="list-disc ml-6 mb-4">
+      <li>Quickly identify the time window with the highest cumulative noise, indicating a burst event.</li>
+      <li>Adaptively increase suppression strength only during these detected bursts, preserving speech quality elsewhere.</li>
+      <li>Provide real-time feedback to the user or system for further processing or visualization.</li>
+      <li>Reduce computational overhead by avoiding redundant analysis of the entire audio stream.</li>
+    </ul>
+  </p>
+
+  <table class="table-auto border-collapse border border-gray-300 mb-4 mx-auto max-w-4xl w-full text-center">
+  <thead>
+    <tr>
+      <th class="border border-gray-300 px-4 py-2 bg-gray-100">Frame Index</th>
+      <td class="border border-gray-300 px-4 py-2">1</td>
+      <td class="border border-gray-300 px-4 py-2">2</td>
+      <td class="border border-gray-300 px-4 py-2">3</td>
+      <td class="border border-gray-300 px-4 py-2">4</td>
+      <td class="border border-gray-300 px-4 py-2">5</td>
+      <td class="border border-gray-300 px-4 py-2">6</td>
+      <td class="border border-gray-300 px-4 py-2">7</td>
+      <td class="border border-gray-300 px-4 py-2">8</td>
+      <td class="border border-gray-300 px-4 py-2">9</td>
+      <td class="border border-gray-300 px-4 py-2">10</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="border border-gray-300 px-4 py-2 bg-gray-100 text-left">Noise Score</th>
+      <td class="border border-gray-300 px-4 py-2">-2</td>
+      <td class="border border-gray-300 px-4 py-2">3</td>
+      <td class="border border-gray-300 px-4 py-2">5</td>
+      <td class="border border-gray-300 px-4 py-2">-1</td>
+      <td class="border border-gray-300 px-4 py-2">4</td>
+      <td class="border border-gray-300 px-4 py-2">-3</td>
+      <td class="border border-gray-300 px-4 py-2">2</td>
+      <td class="border border-gray-300 px-4 py-2">3</td>
+      <td class="border border-gray-300 px-4 py-2">-4</td>
+      <td class="border border-gray-300 px-4 py-2">2</td>
+    </tr>
+  </tbody>
+</table>
+
+
+  <p class="mb-4">
+    In this example, Kadane’s algorithm would detect that frames 2 → 5 form the noisiest segment, enabling Broadcast to adapt its suppression strength intelligently in real time.
+  </p>
+
+  <h5 class="text-lg font-semibold mb-2">Benefits of this Approach</h5>
+  <ul class="list-disc ml-6 mb-4">
+    <li>Detects noise bursts dynamically without reprocessing the full stream.</li>
+    <li>Improves suppression quality and reduces residual noise artifacts.</li>
+    <li>Lightweight and parallelizable — perfect for GPU-friendly pipelines.</li>
+    <li>Balances speech clarity with adaptive suppression.</li>
+  </ul>
+
+  <p>
+    This Kadane-based adaptive noise analysis complements NVIDIA Broadcast’s deep learning models and DSP pipelines by adding an efficient burst-aware suppression layer.
+  </p>
+</div>
+
+
+
+<!-- End of business cases -->
+<!-- End of business cases -->
+<!-- End of business cases -->
+
 
     <section id="metrics">
       <h3 class="text-2xl font-bold mb-2">Use Case Insights and Efficiency Metrics - Efficiency metrics 📊</h3>
@@ -1335,43 +1893,68 @@ int main() {
   <h3 class="text-2xl font-bold mb-2">References 📚</h3>
   <ul class="list-none ml-6 space-y-2">
     <li>
-      [1] Why everyone is suddenly talking about Nvidia, the nearly $3 trillion-dollar company fueling the AI revolution by NBC NEWS 
+      [1] Why everyone is suddenly talking about Nvidia, the nearly $3 trillion-dollar company fueling the AI revolution - NBC NEWS 
       <a href="https://www.nbcnews.com/business/business-news/what-is-nvidia-what-do-they-make-ai-artificial-intelligence-rcna140171" 
          class="text-blue-700 underline" target="_blank">[Link]</a>
     </li>
     <li>
-      [2] NVIDIA Corporation by Britannica
+      [2] NVIDIA Corporation - Britannica
       <a href="https://www.britannica.com/money/NVIDIA-Corporation" 
          class="text-blue-700 underline" target="_blank">[Link]</a>
     </li>
     <li>
-      [3] Nvidia's Broadcast AI app turns any room into a studio by Creative Bloq
+      [3] Nvidia's Broadcast AI app turns any room into a studio - Creative Bloq
       <a href="https://www.creativebloq.com/3d/video-game-design/content-creators-are-using-ai-powered-features-for-a-studio-quality-setup" 
          class="text-blue-700 underline" target="_blank">[Link]</a>
     </li>
     <li>
-      [4] NVIDIA Clara Accelerates Breakthrough Drug Discovery with AI Solutions by Quantum Zeitgeist
+      [4] NVIDIA Clara Accelerates Breakthrough Drug Discovery with AI Solutions - Quantum Zeitgeist
       <a href="https://quantumzeitgeist.com/nvidia-clara-accelerates-breakthrough-drug-discovery-with-ai-solutions/" 
          class="text-blue-700 underline" target="_blank">[Link]</a>
     </li>
     <li>
-      [5] Everything You Need to Know About NVIDIA Jetson by Viso
+      [5] Everything You Need to Know About NVIDIA Jetson - Viso
       <a href="https://viso.ai/edge-ai/nvidia-jetson/ 
          class="text-blue-700 underline" target="_blank">[Link]</a>
     </li>
     <li>
-      [6] A* Search Algorithm
+      [6] A* Search Algorithm - GeeksForGeeks
       <a href="https://www.geeksforgeeks.org/a-search-algorithm/" 
          class="text-blue-700 underline" target="_blank">[Link]</a>
     </li>
     <li>
-      [7] NVIDIA - Wikipedia 
-      <a href="https://en.wikipedia.org/wiki/Nvidia" 
+      [7] Segment Tree - GeeksForGeeks
+      <a href="https://www.geeksforgeeks.org/segment-tree-data-structure" 
          class="text-blue-700 underline" target="_blank">[Link]</a>
     </li>
     <li>
-      [8] Towards Data Science – Data Structures and Algorithms Insights 
-      <a href="https://towardsdatascience.com" 
+      [8] Uniform Cost Search (UCS) in AI - GeeksForGeeks 
+      <a href="https://www.geeksforgeeks.org/uniform-cost-search-ucs-in-ai/" 
+         class="text-blue-700 underline" target="_blank">[Link]</a>
+    </li>
+    <li>
+      [9] End-to-End Solutions for Autonomous Vehicles - NVIDIA 
+      <a href="https://developer.nvidia.com/drive" 
+         class="text-blue-700 underline" target="_blank">[Link]</a>
+    </li>
+    <li>
+      [10] KD Trees in C++ - GeeksForGeeks 
+      <a href="https://www.geeksforgeeks.org/kd-trees-in-cpp/" 
+         class="text-blue-700 underline" target="_blank">[Link]</a>
+    </li>
+    <li>
+      [11] NVIDIA Broadcast 1.4 Adds Eye Contact and Vignette Effects With Virtual Background Enhancements - NVIDIA 
+      <a href="https://www.nvidia.com/en-in/geforce/news/jan-2023-nvidia-broadcast-update/" 
+         class="text-blue-700 underline" target="_blank">[Link]</a>
+    </li>
+    <li>
+      [12] Maximum Subarray Sum - Kadane's Algorithm - GeeksForGeeks
+      <a href="https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/" 
+         class="text-blue-700 underline" target="_blank">[Link]</a>
+    </li>
+    <li>
+      [13] Kadane's Algorithm - NeetCode
+      <a href="https://neetcode.io/courses/advanced-algorithms/0" 
          class="text-blue-700 underline" target="_blank">[Link]</a>
     </li>
   </ul>
