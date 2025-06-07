@@ -163,134 +163,9 @@
     Nvidia’s business problems addressed here highlight the importance of algorithmic problem-solving:
   </p>
 
-  <!-- 1. GPU Resource Management -->
+<!-- 1. GPU Allocation via A* Search & Stable Marriage -->
 <div class="mb-6">
-  <h4 class="text-xl font-semibold mb-2">1. GPU Resource Management 🎮</h4>
-  <p class="mb-2">
-    Efficiently assigning tasks across available GPUs in data centers is crucial for maximizing throughput while minimizing energy use and latency. This becomes especially important when multiple AI tasks with different resource requirements are queued together.
-  </p>
-  <p class="mb-4"><strong>Applied Algorithm:</strong> 0/1 Knapsack Problem – where each job is an item with weight (GPU usage) and value (priority or expected reward).</p>
-
-  <h5 class="text-lg font-semibold mb-2">What is the Knapsack Problem?</h5>
-<p class="mb-4">
-  The Knapsack Problem is a classic optimization problem. Given a set of items, each with a weight and value, the goal is to select items so that the total weight does not exceed a capacity limit while maximizing the total value. In the 0/1 Knapsack variant, items cannot be split — they are either taken or left.
-</p>
-<img src="images/knapsack.gif" alt="Knapsack Problem Illustration" class="w-full max-w-md mx-auto mb-6 rounded shadow-lg" />
-
-<p class="text-center text-sm text-gray-500 mb-6">
-  Source: <a href="https://commons.wikimedia.org/wiki/File:Knapsack_problem_dynamic_programming.gif" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">Wikimedia Commons</a>
-</p>
-
-<h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
-<ul class="list-disc ml-6 mb-4">
-  <li><strong>Time Complexity:</strong> <code>O(nW)</code> — where <code>n</code> is the number of items and <code>W</code> is the total capacity of the knapsack.</li>
-  <li><strong>Space Complexity:</strong> <code>O(nW)</code> using a 2D DP array, or <code>O(W)</code> using a space-optimized 1D array.</li>
-</ul>
-<p class="mb-6">
-  While the knapsack problem is NP-complete, dynamic programming offers a pseudo-polynomial time solution that is efficient for moderate-sized inputs. Space optimization further enables real-time applications in resource-constrained environments like embedded GPU systems.
-</p>
-<div class="bg-gray-900 text-green-200 font-mono text-sm p-4 rounded-md shadow-lg overflow-x-auto mb-6">
-  <pre><code>// 0/1 Knapsack Problem in C++ (Dynamic Programming)
-
-#include &lt;iostream&gt;
-#include &lt;vector&gt;
-using namespace std;
-
-int knapsack(const vector&lt;int&gt;& weights, const vector&lt;int&gt;& values, int capacity) {
-    int n = weights.size();
-    vector&lt;vector&lt;int&gt;&gt; dp(n + 1, vector&lt;int&gt;(capacity + 1, 0));
-
-    for (int i = 1; i &lt;= n; ++i) {
-        for (int w = 0; w &lt;= capacity; ++w) {
-            if (weights[i - 1] &lt;= w) {
-                dp[i][w] = max(values[i - 1] + dp[i - 1][w - weights[i - 1]], dp[i - 1][w]);
-            } else {
-                dp[i][w] = dp[i - 1][w];
-            }
-        }
-    }
-
-    return dp[n][capacity];
-}
-
-int main() {
-    vector&lt;int&gt; weights = {2, 1, 3, 2};
-    vector&lt;int&gt; values = {12, 10, 20, 15};
-    int capacity = 5;
-
-    cout &lt;&lt; "Maximum value: " &lt;&lt; knapsack(weights, values, capacity) &lt;&lt; endl; // Output: 37
-    return 0;
-}
-  </code></pre>
-</div>
-
-
-
-  <h5 class="text-lg font-semibold mb-2">GPU Resource Management as a Knapsack Problem</h5>
-  <p class="mb-4">
-    Nvidia GPUs in data centers must run multiple AI workloads simultaneously. Each task requires some GPU memory and compute, and has a priority or value. Since GPU resources are limited, scheduling becomes a problem of selecting tasks that maximize total priority without exceeding resource limits — exactly like a 0/1 Knapsack Problem.
-  </p>
-
-  <table class="table-auto border-collapse border border-gray-300 mb-4 mx-auto max-w-lg w-full text-left">
-    <thead>
-      <tr>
-        <th class="border border-gray-300 px-4 py-2 bg-gray-100">Task</th>
-        <th class="border border-gray-300 px-4 py-2 bg-gray-100">Memory Needed (GB)</th>
-        <th class="border border-gray-300 px-4 py-2 bg-gray-100">Priority (Value)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="border border-gray-300 px-4 py-2">A</td>
-        <td class="border border-gray-300 px-4 py-2">5</td>
-        <td class="border border-gray-300 px-4 py-2">10</td>
-      </tr>
-      <tr>
-        <td class="border border-gray-300 px-4 py-2">B</td>
-        <td class="border border-gray-300 px-4 py-2">3</td>
-        <td class="border border-gray-300 px-4 py-2">7</td>
-      </tr>
-      <tr>
-        <td class="border border-gray-300 px-4 py-2">C</td>
-        <td class="border border-gray-300 px-4 py-2">8</td>
-        <td class="border border-gray-300 px-4 py-2">12</td>
-      </tr>
-      <tr>
-        <td class="border border-gray-300 px-4 py-2">D</td>
-        <td class="border border-gray-300 px-4 py-2">4</td>
-        <td class="border border-gray-300 px-4 py-2">8</td>
-      </tr>
-      <tr>
-        <td class="border border-gray-300 px-4 py-2">E</td>
-        <td class="border border-gray-300 px-4 py-2">6</td>
-        <td class="border border-gray-300 px-4 py-2">11</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <p class="mb-4">
-    The goal is to select tasks fitting within a 16 GB GPU memory limit to maximize total priority, ensuring efficient GPU utilization and balanced workload scheduling.
-  </p>
-
-  <h5 class="text-lg font-semibold mb-2">Benefits of this approach</h5>
-  <ul class="list-disc ml-6 mb-4">
-    <li>Maximizes GPU resource utilization without overcommitment.</li>
-    <li>Enables automated scheduling of high-priority AI workloads.</li>
-    <li>Balances throughput and performance priorities dynamically.</li>
-    <li>Supports real-time scheduling as workloads change.</li>
-  </ul>
-
-  
-
-  <p>
-    This knapsack-based scheduling logic underpins Nvidia’s CUDA Multi-Process Service (MPS) and cloud GPU schedulers to optimize resource allocation dynamically across many clients and workloads.
-  </p>
-</div>
-
-
-  <!-- 2. GPU Allocation via A* Search & Stable Marriage -->
-<div class="mb-6">
-  <h4 class="text-xl font-semibold mb-2">2. Smart GPU Allocation using A* Search & Stable Marriage 💡</h4>
+  <h4 class="text-xl font-semibold mb-2">1. Smart GPU Allocation using A* Search & Stable Marriage 💡</h4>
   <p class="mb-4">
     Allocating the right task to the right GPU at the right time isn't just about maximizing value — it's also about matching compatibility and predicting the best long-term scheduling decisions. To tackle this, we combine two elegant algorithms: <strong>A* Search</strong> (for optimal pathfinding) and the <strong>Stable Marriage Problem</strong> (for stable, preference-based matching).
   </p>
@@ -1100,6 +975,133 @@ int main()
   </p>
 </div>
 
+  <!-- 2. GPU Resource Management -->
+<div class="mb-6">
+  <h4 class="text-xl font-semibold mb-2">2. GPU Resource Management 🎮</h4>
+  <p class="mb-2">
+    Efficiently assigning tasks across available GPUs in data centers is crucial for maximizing throughput while minimizing energy use and latency. This becomes especially important when multiple AI tasks with different resource requirements are queued together.
+  </p>
+  <p class="mb-4"><strong>Applied Algorithm:</strong> 0/1 Knapsack Problem – where each job is an item with weight (GPU usage) and value (priority or expected reward).</p>
+
+  <h5 class="text-lg font-semibold mb-2">What is the Knapsack Problem?</h5>
+<p class="mb-4">
+  The Knapsack Problem is a classic optimization problem. Given a set of items, each with a weight and value, the goal is to select items so that the total weight does not exceed a capacity limit while maximizing the total value. In the 0/1 Knapsack variant, items cannot be split — they are either taken or left.
+</p>
+<img src="images/knapsack.gif" alt="Knapsack Problem Illustration" class="w-full max-w-md mx-auto mb-6 rounded shadow-lg" />
+
+<p class="text-center text-sm text-gray-500 mb-6">
+  Source: <a href="https://commons.wikimedia.org/wiki/File:Knapsack_problem_dynamic_programming.gif" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">Wikimedia Commons</a>
+</p>
+
+<h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
+<ul class="list-disc ml-6 mb-4">
+  <li><strong>Time Complexity:</strong> <code>O(nW)</code> — where <code>n</code> is the number of items and <code>W</code> is the total capacity of the knapsack.</li>
+  <li><strong>Space Complexity:</strong> <code>O(nW)</code> using a 2D DP array, or <code>O(W)</code> using a space-optimized 1D array.</li>
+</ul>
+<p class="mb-6">
+  While the knapsack problem is NP-complete, dynamic programming offers a pseudo-polynomial time solution that is efficient for moderate-sized inputs. Space optimization further enables real-time applications in resource-constrained environments like embedded GPU systems.
+</p>
+<div class="bg-gray-900 text-green-200 font-mono text-sm p-4 rounded-md shadow-lg overflow-x-auto mb-6">
+  <pre><code>// 0/1 Knapsack Problem in C++ (Dynamic Programming)
+
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+int knapsack(const vector&lt;int&gt;& weights, const vector&lt;int&gt;& values, int capacity) {
+    int n = weights.size();
+    vector&lt;vector&lt;int&gt;&gt; dp(n + 1, vector&lt;int&gt;(capacity + 1, 0));
+
+    for (int i = 1; i &lt;= n; ++i) {
+        for (int w = 0; w &lt;= capacity; ++w) {
+            if (weights[i - 1] &lt;= w) {
+                dp[i][w] = max(values[i - 1] + dp[i - 1][w - weights[i - 1]], dp[i - 1][w]);
+            } else {
+                dp[i][w] = dp[i - 1][w];
+            }
+        }
+    }
+
+    return dp[n][capacity];
+}
+
+int main() {
+    vector&lt;int&gt; weights = {2, 1, 3, 2};
+    vector&lt;int&gt; values = {12, 10, 20, 15};
+    int capacity = 5;
+
+    cout &lt;&lt; "Maximum value: " &lt;&lt; knapsack(weights, values, capacity) &lt;&lt; endl; // Output: 37
+    return 0;
+}
+  </code></pre>
+</div>
+
+
+
+  <h5 class="text-lg font-semibold mb-2">GPU Resource Management as a Knapsack Problem</h5>
+  <p class="mb-4">
+    Nvidia GPUs in data centers must run multiple AI workloads simultaneously. Each task requires some GPU memory and compute, and has a priority or value. Since GPU resources are limited, scheduling becomes a problem of selecting tasks that maximize total priority without exceeding resource limits — exactly like a 0/1 Knapsack Problem.
+  </p>
+
+  <table class="table-auto border-collapse border border-gray-300 mb-4 mx-auto max-w-lg w-full text-left">
+    <thead>
+      <tr>
+        <th class="border border-gray-300 px-4 py-2 bg-gray-100">Task</th>
+        <th class="border border-gray-300 px-4 py-2 bg-gray-100">Memory Needed (GB)</th>
+        <th class="border border-gray-300 px-4 py-2 bg-gray-100">Priority (Value)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">A</td>
+        <td class="border border-gray-300 px-4 py-2">5</td>
+        <td class="border border-gray-300 px-4 py-2">10</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">B</td>
+        <td class="border border-gray-300 px-4 py-2">3</td>
+        <td class="border border-gray-300 px-4 py-2">7</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">C</td>
+        <td class="border border-gray-300 px-4 py-2">8</td>
+        <td class="border border-gray-300 px-4 py-2">12</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">D</td>
+        <td class="border border-gray-300 px-4 py-2">4</td>
+        <td class="border border-gray-300 px-4 py-2">8</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">E</td>
+        <td class="border border-gray-300 px-4 py-2">6</td>
+        <td class="border border-gray-300 px-4 py-2">11</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="mb-4">
+    The goal is to select tasks fitting within a 16 GB GPU memory limit to maximize total priority, ensuring efficient GPU utilization and balanced workload scheduling.
+  </p>
+
+  <h5 class="text-lg font-semibold mb-2">Benefits of this approach</h5>
+  <ul class="list-disc ml-6 mb-4">
+    <li>Maximizes GPU resource utilization without overcommitment.</li>
+    <li>Enables automated scheduling of high-priority AI workloads.</li>
+    <li>Balances throughput and performance priorities dynamically.</li>
+    <li>Supports real-time scheduling as workloads change.</li>
+  </ul>
+
+  
+
+  <p>
+    This knapsack-based scheduling logic underpins Nvidia’s CUDA Multi-Process Service (MPS) and cloud GPU schedulers to optimize resource allocation dynamically across many clients and workloads.
+  </p>
+</div>
+
+
+  
+
   <!-- 3. Real-Time Recommendation Rankings -->
 <div class="mb-6">
   <h4 class="text-xl font-semibold mb-2">3. Real-Time Recommendation Rankings 🎯</h4>
@@ -1740,7 +1742,7 @@ int main() {
     Kadane’s algorithm is a dynamic programming technique used to find the contiguous subarray within a one-dimensional array of numbers that has the largest sum.
     In the context of audio processing, this enables Broadcast to quickly identify time segments with the strongest noise bursts or speech energy.
   </p>
-  <img src="images/kadane.avif" alt="Kadane's Algorithm Illustration" class="w-full max-w-md mx-auto mb-6 rounded shadow-lg" />
+  <img src="images/kadane.avif" alt="Kadane's Algorithm Illustration" class="w-full max-w-4xl mx-auto mb-6 rounded shadow-lg" />
   <p class="text-center text-sm text-gray-500 mb-6">
     Source: <a href="https://neetcode.io/courses/advanced-algorithms/0" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">Neetcode<sup>[13]</sup></a>
   </p>
@@ -1852,6 +1854,125 @@ int main() {
   </p>
 </div>
 
+<!-- 8. Dynamic Range Compression Using DSA Principles 🎤 -->
+<div class="mb-6">
+  <h4 class="text-xl font-semibold mb-2">8. Dynamic Range Compression Using DSA Principles 🎤</h4>
+  <p class="mb-2">
+    Compressors are fundamental components in audio processing pipelines like NVIDIA Broadcast, used to control loudness and smooth dynamic variations in speech or music. Traditionally implemented with DSP filter chains, we demonstrate how the same effect can be achieved using pure DSA techniques on an array of voice amplitudes.
+  </p>
+  <p class="mb-4"><strong>Applied Algorithm:</strong> Greedy adaptive scan over amplitude array.</p>
+
+  <h5 class="text-lg font-semibold mb-2">What is Dynamic Range Compression?</h5>
+  <p class="mb-4">
+    Dynamic Range Compression reduces the volume of loud sounds while keeping quieter sounds unaffected or boosting them slightly, resulting in a more uniform and polished output. It operates on an input stream of amplitudes and outputs a compressed version based on a configurable threshold and ratio.
+  </p>
+
+  <table class="table-auto border-collapse border border-gray-300 mb-6 mx-auto max-w-md w-full text-left">
+  <thead>
+    <tr>
+      <th class="border border-gray-300 px-4 py-2 bg-gray-100">Frame Index</th>
+      <th class="border border-gray-300 px-4 py-2 bg-gray-100">Input Amplitude</th>
+      <th class="border border-gray-300 px-4 py-2 bg-gray-100">Output Amplitude (Compressed)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="border border-gray-300 px-4 py-2">1</td>
+      <td class="border border-gray-300 px-4 py-2">0.2</td>
+      <td class="border border-gray-300 px-4 py-2">0.2</td>
+    </tr>
+    <tr>
+      <td class="border border-gray-300 px-4 py-2">2</td>
+      <td class="border border-gray-300 px-4 py-2">0.5</td>
+      <td class="border border-gray-300 px-4 py-2">0.5</td>
+    </tr>
+    <tr>
+      <td class="border border-gray-300 px-4 py-2">3</td>
+      <td class="border border-gray-300 px-4 py-2">0.8</td>
+      <td class="border border-gray-300 px-4 py-2">0.8</td>
+    </tr>
+    <tr class="bg-yellow-100 font-semibold">
+      <td class="border border-gray-300 px-4 py-2">4</td>
+      <td class="border border-gray-300 px-4 py-2">1.2</td>
+      <td class="border border-gray-300 px-4 py-2">1.1</td>
+    </tr>
+    <tr class="bg-yellow-100 font-semibold">
+      <td class="border border-gray-300 px-4 py-2">5</td>
+      <td class="border border-gray-300 px-4 py-2">1.5</td>
+      <td class="border border-gray-300 px-4 py-2">1.25</td>
+    </tr>
+    <tr>
+      <td class="border border-gray-300 px-4 py-2">6</td>
+      <td class="border border-gray-300 px-4 py-2">0.9</td>
+      <td class="border border-gray-300 px-4 py-2">0.9</td>
+    </tr>
+    <tr>
+      <td class="border border-gray-300 px-4 py-2">7</td>
+      <td class="border border-gray-300 px-4 py-2">0.4</td>
+      <td class="border border-gray-300 px-4 py-2">0.4</td>
+    </tr>
+    <tr class="bg-yellow-100 font-semibold">
+      <td class="border border-gray-300 px-4 py-2">8</td>
+      <td class="border border-gray-300 px-4 py-2">1.8</td>
+      <td class="border border-gray-300 px-4 py-2">1.4</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+  <h6 class="text-md font-semibold mb-2">Time & Space Complexity</h6>
+  <ul class="list-disc ml-6 mb-4">
+    <li><strong>Time Complexity:</strong> <code>O(n)</code> — Single pass through the array.</li>
+    <li><strong>Space Complexity:</strong> <code>O(n)</code> — Output array of same size as input.</li>
+  </ul>
+  <p class="mb-6">
+    This algorithm is perfectly suited to GPU acceleration due to its linear scan nature and stateless update per element.
+  </p>
+
+  <div class="bg-gray-900 text-green-200 font-mono text-sm p-4 rounded-md shadow-lg overflow-x-auto mb-6">
+    <pre><code>// Simple Compressor Example in C++
+
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+vector&lt;float&gt; compressor(const vector&lt;float&gt;& input, float threshold, float ratio) {
+    vector&lt;float&gt; output;
+    for (float sample : input) {
+        if (sample &gt; threshold) {
+            float compressed = threshold + (sample - threshold) / ratio;
+            output.push_back(compressed);
+        } else {
+            output.push_back(sample);
+        }
+    }
+    return output;
+}
+
+int main() {
+    vector&lt;float&gt; voiceSignal = {0.2, 0.5, 0.8, 1.2, 1.5, 0.9, 0.4, 1.8};
+    float threshold = 1.0;
+    float ratio = 2.0;
+
+    vector&lt;float&gt; compressedSignal = compressor(voiceSignal, threshold, ratio);
+
+    for (float x : compressedSignal) {
+        cout &lt;&lt; x &lt;&lt; " ";
+    }
+    cout &lt;&lt; endl;
+
+    return 0;
+}
+    </code></pre>
+  </div>
+
+  <h5 class="text-lg font-semibold mb-2">DSA-Based Compression vs. Traditional DSP</h5>
+  <p class="mb-4">
+    By expressing the compression step as a simple greedy scan over an amplitude array, we decouple the algorithm from traditional DSP filter implementations. This allows seamless integration with ML pipelines, adaptive compressors, and GPU-accelerated DSA engines — paving the way for smarter, more flexible audio processing in real-time applications.
+  </p>
+</div>
 
 
 <!-- End of business cases -->
@@ -1860,16 +1981,76 @@ int main() {
 
 
     <section id="metrics">
-      <h3 class="text-2xl font-bold mb-2">Use Case Insights and Efficiency Metrics - Efficiency metrics 📊</h3>
-      <p>
-        The portfolio evaluates efficiency metrics such as:
-      </p>
-      <ul class="list-disc ml-6">
-        <li>GPU utilization rates before and after applying scheduling algorithms.</li>
-        <li>Latency reduction in AI inference workflows (measured in milliseconds).</li>
-        <li>Power consumption savings achieved through DVFS algorithms (in watts).</li>
-        <li>Throughput improvement in real-time processing tasks (frames per second or data packets per second).</li>
-      </ul>
+      <!-- 📊 Use Case Insights and Efficiency Metrics -->
+<div class="mb-10">
+  <h2 class="text-2xl font-bold mb-4">📊 Use Case Insights and Efficiency Metrics</h2>
+  <p class="mb-6">
+    Each selected algorithm offers clear computational guarantees that enable real-time responsiveness and robustness within NVIDIA’s ML pipelines and systems. The following table summarizes their time and space complexity characteristics:
+  </p>
+
+  <table class="table-auto border-collapse border border-gray-300 mb-4 mx-auto max-w-5xl w-full text-left text-sm">
+    <thead>
+      <tr>
+        <th class="border border-gray-300 px-4 py-2 bg-gray-100 font-semibold">Business Case</th>
+        <th class="border border-gray-300 px-4 py-2 bg-gray-100 font-semibold">Applied Algorithm(s)</th>
+        <th class="border border-gray-300 px-4 py-2 bg-gray-100 font-semibold">Time Complexity</th>
+        <th class="border border-gray-300 px-4 py-2 bg-gray-100 font-semibold">Space Complexity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">Smart GPU Allocation</td>
+        <td class="border border-gray-300 px-4 py-2">A* Search, Stable Marriage</td>
+        <td class="border border-gray-300 px-4 py-2">O(E + V log V), O(n²)</td>
+        <td class="border border-gray-300 px-4 py-2">O(V)</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">GPU Resource Management</td>
+        <td class="border border-gray-300 px-4 py-2">0/1 Knapsack Problem</td>
+        <td class="border border-gray-300 px-4 py-2">O(nW)</td>
+        <td class="border border-gray-300 px-4 py-2">O(W)</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">Real-Time Recommendation Rankings</td>
+        <td class="border border-gray-300 px-4 py-2">PageRank Algorithm</td>
+        <td class="border border-gray-300 px-4 py-2">O(kE)</td>
+        <td class="border border-gray-300 px-4 py-2">O(V + E)</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">GPU Memory Management Optimization</td>
+        <td class="border border-gray-300 px-4 py-2">Segment Tree</td>
+        <td class="border border-gray-300 px-4 py-2">O(log N)</td>
+        <td class="border border-gray-300 px-4 py-2">O(N)</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">Real-Time Data Processing</td>
+        <td class="border border-gray-300 px-4 py-2">Uniform Cost Search</td>
+        <td class="border border-gray-300 px-4 py-2">O((V + E) log V)</td>
+        <td class="border border-gray-300 px-4 py-2">O(V)</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">Eye Gaze Correction with Adaptive Smoothing</td>
+        <td class="border border-gray-300 px-4 py-2">Dynamic Programming + Standard Deviation</td>
+        <td class="border border-gray-300 px-4 py-2">O(N)</td>
+        <td class="border border-gray-300 px-4 py-2">O(N)</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-300 px-4 py-2">Burst Noise Detection in Real-Time Audio Processing</td>
+        <td class="border border-gray-300 px-4 py-2">Kadane's Algorithm</td>
+        <td class="border border-gray-300 px-4 py-2">O(N)</td>
+        <td class="border border-gray-300 px-4 py-2">O(1)</td>
+      </tr>
+      <tr>
+  <td class="border border-gray-300 px-4 py-2">Audio Compression with DSA-Based Thresholding</td>
+  <td class="border border-gray-300 px-4 py-2">Array Traversal + Conditional Compression</td>
+  <td class="border border-gray-300 px-4 py-2">O(N)</td>
+  <td class="border border-gray-300 px-4 py-2">O(1)</td>
+</tr>
+
+    </tbody>
+  </table>
+</div>
+
     </section>
 
     <section id="learnings">
@@ -1877,15 +2058,50 @@ int main() {
   <p>
     This portfolio illustrates how well-designed data structures and algorithms (DSA) can address complex challenges within NVIDIA's advanced hardware and AI-driven services. Each section applies and recommends specific DSA techniques to optimize areas such as GPU task scheduling, model deployment, and real-time data processing. By drawing from the concepts learned in DSA and Algorithmic Problem Solving (APS) courses, it showcases how academic knowledge can be applied to real-world scenarios.
   </p>
-  <p>
-    Through this portfolio, I learned:
-  </p>
-  <ul class="list-disc ml-6">
-    <li>The importance of algorithmic efficiency in hardware resource management.</li>
-    <li>How data-driven optimizations can significantly impact AI model deployment performance.</li>
-    <li>The value of balancing computational power and energy consumption for sustainable computing.</li>
-    <li>Insights into Nvidia’s ecosystem and how algorithmic problem solving drives innovation in GPU computing.</li>
-  </ul>
+  <table class="table-auto border-collapse border border-gray-300 mx-auto max-w-4xl w-full text-left">
+  <thead>
+    <tr class="bg-gray-100">
+      <th class="border border-gray-300 px-4 py-2">Business Case</th>
+      <th class="border border-gray-300 px-4 py-2">Key Learning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="border border-gray-300 px-4 py-2 font-semibold">Smart GPU Allocation</td>
+      <td class="border border-gray-300 px-4 py-2">Heuristic search algorithms combined with stable matching can optimize GPU task scheduling for improved resource utilization.</td>
+    </tr>
+    <tr class="bg-gray-50">
+      <td class="border border-gray-300 px-4 py-2 font-semibold">GPU Resource Management</td>
+      <td class="border border-gray-300 px-4 py-2">Knapsack problem approaches effectively balance competing resource demands to maximize GPU throughput.</td>
+    </tr>
+    <tr>
+      <td class="border border-gray-300 px-4 py-2 font-semibold">Real-Time Recommendation Rankings</td>
+      <td class="border border-gray-300 px-4 py-2">PageRank algorithms efficiently rank dynamic data streams to deliver timely, relevant recommendations.</td>
+    </tr>
+    <tr class="bg-gray-50">
+      <td class="border border-gray-300 px-4 py-2 font-semibold">GPU Memory Management Optimization</td>
+      <td class="border border-gray-300 px-4 py-2">Segment trees enable fast range queries and updates, crucial for managing GPU memory efficiently.</td>
+    </tr>
+    <tr>
+      <td class="border border-gray-300 px-4 py-2 font-semibold">Real-Time Data Processing</td>
+      <td class="border border-gray-300 px-4 py-2">Uniform Cost Search balances path cost optimally in real-time sensor fusion for autonomous navigation.</td>
+    </tr>
+    <tr class="bg-gray-50">
+      <td class="border border-gray-300 px-4 py-2 font-semibold">Eye Gaze Correction with Adaptive Smoothing</td>
+      <td class="border border-gray-300 px-4 py-2">Combining Dynamic Programming with statistical smoothing reduces jitter and enhances gaze tracking accuracy.</td>
+    </tr>
+    <tr>
+      <td class="border border-gray-300 px-4 py-2 font-semibold">Burst Noise Detection in Audio Processing</td>
+      <td class="border border-gray-300 px-4 py-2">Kadane’s algorithm effectively detects and isolates burst noise in streaming audio data with low latency.</td>
+    </tr>
+    <tr class="bg-gray-50">
+      <td class="border border-gray-300 px-4 py-2 font-semibold">Dynamic Range Compression Using DSA</td>
+      <td class="border border-gray-300 px-4 py-2">Array-based dynamic programming can replicate audio compression, showcasing DSA’s potential in digital signal processing.</td>
+    </tr>
+  </tbody>
+</table>
+
+
 </section>
 
 
