@@ -5,39 +5,20 @@ Enabling Nvidia (En-vidia)
 
 An APS point of view
 
-[View on GitHub](https://github.com/Amish-03/nvidia_portfolio)
 
-Course Name
+Course Name: Algorithmic Problem Solving
 
-Algorithmic Problem Solving
+Course Code: 23ECSE309
 
-Course Code
+Name: Amish Bhushan Kulkarni
 
-23ECSE309
+Department: Electronics and Communications
 
-Name
-
-Amish Bhushan Kulkarni
-
-Department
-
-Electronics and Communications
-
-SRN
-
-01FE22BEC099
-
-Course Instructor
-
-Prakash Hegade
-
-University
+Course Instructor: Prof. Prakash Hegade
 
 KLE Technological University, Hubballi-31
 
-Portfolio Topic/Domain
-
-Nvidia
+Portfolio Topic/Domain: Nvidia
 
 A deeper dive into Nvidia
 
@@ -1032,30 +1013,6 @@ Thanks to its iterative nature, PageRank maps perfectly to CUDA for parallel GPU
 
 In real-time recommendation engines, users and items form a bipartite graph where interaction strength matters. PageRank naturally identifies influential items through indirect relationships — e.g., "users like me also viewed this" — providing context-aware ranking.
 
-User
-
-Item Clicked
-
-Interaction Strength
-
-U1
-
-Item A
-
-1.0
-
-U2
-
-Item B
-
-0.8
-
-U3
-
-Item A
-
-0.9
-
 These weighted edges form a graph input to PageRank, producing global rankings that reflect not just direct popularity, but contextual influence from similar users and indirect interaction paths.
 
 ##### Benefits of this approach
@@ -1612,51 +1569,7 @@ NVIDIA Broadcast processes continuous audio streams divided into short frames. A
 *   Provide real-time feedback to the user or system for further processing or visualization.
 *   Reduce computational overhead by avoiding redundant analysis of the entire audio stream.
 
-Frame Index
 
-1
-
-2
-
-3
-
-4
-
-5
-
-6
-
-7
-
-8
-
-9
-
-10
-
-Noise Score
-
-\-2
-
-3
-
-5
-
-\-1
-
-4
-
-\-3
-
-2
-
-3
-
-\-4
-
-2
-
-In this example, Kadane’s algorithm would detect that frames 2 → 5 form the noisiest segment, enabling Broadcast to adapt its suppression strength intelligently in real time.
 
 ##### Benefits of this Approach
 
@@ -1677,59 +1590,6 @@ Compressors are fundamental components in audio processing pipelines like NVIDIA
 
 Dynamic Range Compression reduces the volume of loud sounds while keeping quieter sounds unaffected or boosting them slightly, resulting in a more uniform and polished output. It operates on an input stream of amplitudes and outputs a compressed version based on a configurable threshold and ratio.
 
-Frame Index
-
-Input Amplitude
-
-Output Amplitude (Compressed)
-
-1
-
-0.2
-
-0.2
-
-2
-
-0.5
-
-0.5
-
-3
-
-0.8
-
-0.8
-
-4
-
-1.2
-
-1.1
-
-5
-
-1.5
-
-1.25
-
-6
-
-0.9
-
-0.9
-
-7
-
-0.4
-
-0.4
-
-8
-
-1.8
-
-1.4
 
 ###### Time & Space Complexity
 
